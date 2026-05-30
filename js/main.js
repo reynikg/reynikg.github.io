@@ -149,4 +149,27 @@
     });
   }
   function escapeAttr(s) { return escapeHtml(s); }
+
+  /* ---------- Get in touch connect button (index.html) ---------- */
+  document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('userEmail').value;
+      const message = document.getElementById('userMessage').value;
+
+      const bodyContent = "Email: " + email + "\n\nMessage:\n" + message;
+      const mailtoURL = "mailto:reynikg@gmail.com?body=" + encodeURIComponent(bodyContent);
+
+      window.location.href = mailtoURL;
+      });
+    }
+  });
+
 })();
+
+
+ 

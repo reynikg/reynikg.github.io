@@ -102,9 +102,10 @@
       <h2>Get in touch</h2>
       <p>New essays &amp; build logs, occasionally.</p>
       <!-- Replace action with your real form endpoint (e.g. Formspree) later -->
-      <form class="newsletter__form" onsubmit="return false;">
-        <input type="email" placeholder="Enter your email" aria-label="Email address" required>
-        <button type="submit" class="btn btn--solid">Subscribe</button>
+      <form class="newsletter__form" id="contactForm">
+        <input type="email" id="userEmail" placeholder="Enter your email" aria-label="Email address" required>
+        <textarea id="userMessage" placeholder="Type your message" aria-label="Message" rows="4" required></textarea>
+        <button type="submit" class="btn btn--solid">Connect</button>
       </form>
     </div>
   </section>
