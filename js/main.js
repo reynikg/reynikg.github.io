@@ -28,7 +28,12 @@
   var captionTitle = document.querySelector(".hero__caption-title");
   var captionSub = document.querySelector(".hero__caption-sub");
 
-  // Shuffle a copy so the order is random on each visit.
+  // Only run the hero rotation on pages that actually have a hero.
+  if (layerA && layerB) {
+    runHeroRotation();
+  }
+
+  function runHeroRotation() {
   function shuffled(arr) {
     var a = arr.slice();
     for (var i = a.length - 1; i > 0; i--) {
@@ -71,6 +76,7 @@
       showProject(order[idx]);
     }, 6000); // change every 6 seconds
   }
+  } /* end runHeroRotation */
 
   /* ---------- 2. CAROUSEL ---------- */
 
@@ -88,6 +94,52 @@
         '<div class="work-card__desc">' + escapeHtml(p.descriptor) + '</div>';
       carousel.appendChild(a);
     });
+  }
+
+  /* ---------- 3. PORTFOLIO GRID (portfolio.html) ---------- */
+
+  var grid = document.getElementById("portfolioGrid");
+  if (grid) {
+    WORKS.forEach(function (p) {
+      var a = document.createElement("a");
+      a.className = "portfolio__item";
+      a.href = p.url || "#";
+      a.innerHTML =
+        '<div class="portfolio__img" style="background-image:url(\'' +
+          p.image + '\')" role="img" aria-label="' + escapeAttr(p.title) + '"></div>' +
+        '<div class="portfolio__cap">' +
+          '<div class="t">' + escapeHtml(p.title) + '</div>' +
+          '<div class="d">' + escapeHtml(p.descriptor) + '</div>' +
+        '</div>';
+      grid.appendChild(a);
+    });
+  }
+
+  /* ---------- 4. MULTILINGUAL GREETING (contact.html) ---------- */
+
+  var hello = document.getElementById("helloGreeting");
+  if (hello) {
+    // Greetings — English, Greek and Chinese first (languages Robert uses),
+    // then a world tour. Add or reorder freely.
+    var greetings = [
+      "Hello", "Γεια σου", "你好", "Ahoj", "Hola", "Bonjour",
+      "Ciao", "Hallo", "Olá", "こんにちは", "Namaste", "Salaam"
+    ];
+    var hi = 0;
+    var reduce = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduce) {
+      setInterval(function () {
+        hello.classList.add("is-fading");          // fade out
+        setTimeout(function () {
+          hi = (hi + 1) % greetings.length;
+          hello.textContent = greetings[hi];
+          hello.setAttribute("aria-label", greetings[hi]);
+          hello.classList.remove("is-fading");      // fade back in
+        }, 400);                                     // matches CSS transition
+      }, 2800);
+    }
   }
 
   /* ---------- small helpers to keep text safe ---------- */

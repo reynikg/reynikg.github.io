@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing — Robert Reynik</title>
+  <meta name="description" content="Articles, tutorials, and research notes by Robert Reynik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html">Robert Reynik</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="writing.html" class="is-active" aria-current="page">Writing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page">
+      <h1 class="page__title">Writing</h1>
+      <p class="page__sub">Notes from the studio, how-to tutorials, and research.</p>
+
+      <!-- Each article is one <a class="writing-item">. Copy a block to add one.
+           Later, this is the section a Jekyll blog would generate automatically. -->
+      <div class="writing-list">
+
+        <a class="writing-item" href="#">
+          <div class="writing-item__meta">
+            <span class="tag tag--research">Research</span>
+            <span class="writing-item__date">Coming soon</span>
+          </div>
+          <h2 class="writing-item__title">Computational design of unmanned surface vessels</h2>
+          <p class="writing-item__excerpt">A look at the algorithmic methods behind my dissertation, and what parametric workflows offer product design.</p>
+        </a>
+
+        <a class="writing-item" href="#">
+          <div class="writing-item__meta">
+            <span class="tag tag--tutorial">Tutorial</span>
+            <span class="writing-item__date">Coming soon</span>
+          </div>
+          <h2 class="writing-item__title">How to design a snap-fit connector in Fusion 360</h2>
+          <p class="writing-item__excerpt">A practical, step-by-step walkthrough for a clip that holds, releases cleanly, and survives repeated use.</p>
+        </a>
+
+        <a class="writing-item" href="#">
+          <div class="writing-item__meta">
+            <span class="tag tag--studio">Studio</span>
+            <span class="writing-item__date">Coming soon</span>
+          </div>
+          <h2 class="writing-item__title">Light Shield — a wearable safety solution</h2>
+          <p class="writing-item__excerpt">The brief, the constraints, and the decisions behind a handheld SOS device designed for elderly users.</p>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__social">
+      <a href="contact.html">Email</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </span>
+    <span>© <span id="year"></span> Robert Reynik</span>
+  </footer>
+
+  <script src="data/works.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
