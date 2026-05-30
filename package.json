@@ -1,0 +1,9 @@
+{
+  "name": "reynikg-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Robert Reynik portfolio — static site with a generator that builds a case-study page per project from data/works.js.",
+  "scripts": {
+    "build": "node build/generate.js"
+  }
+}

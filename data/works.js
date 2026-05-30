@@ -2,72 +2,238 @@
    SELECTED WORKS — your project list (the single source of truth)
    ============================================================
 
-   Both the rotating hero background AND the "Selected work" carousel
-   read from this one list. To add a project:
+   This one file drives EVERYTHING:
+     • the rotating hero background (index.html)
+     • the "Selected work" carousel (index.html)
+     • the portfolio grid (portfolio.html)
+     • each full case-study page (projects/<slug>.html)
 
-     1. Put its main image in the  Selected-Works/  folder.
-     2. Add one { ... } block below, copying the pattern.
-     3. Save, then commit + push.
+   ------------------------------------------------------------
+   HOW TO ADD A PROJECT (no new HTML file needed)
+   ------------------------------------------------------------
+     1. Pick a "slug" — lowercase, hyphens, no spaces (e.g. silent-suites).
+        This becomes the page URL and the image folder name.
 
-   IMPORTANT — file paths are case-sensitive on GitHub.
-   The folder is "Selected-Works" (capital S, capital W). The path you
-   write here must match the real filename exactly, or the image will
-   work on your Mac but break once it's live.
+     2. Make a folder:  Selected-Works/<slug>/
+        Drop your case-study images in it using these names
+        (any you skip are simply left out of the page):
 
-   Fields:
-     title      — shown bold in the carousel + hero caption
-     descriptor — the one-line subtitle
-     image      — path to the image, relative to index.html
-     url        — where the card links (use "#" until the case study exists)
+           cover.jpg       big image at the top of the case study
+           sketch.jpg      process step 1
+           cad.jpg         process step 2
+           prototype.jpg   process step 3
+           final.jpg       process step 4
+           decisions.jpg   image beside the "Key decisions" text
+           outcome.jpg     image in the "Outcome" section
+           gallery-1.jpg   (optional) extra images, gallery-2.jpg, etc.
+
+        You do NOT have to list these paths below — the build script
+        finds them automatically by looking in the folder. Only set an
+        "image" path by hand if a file is named differently.
+
+     3. Keep the thumbnail for the grids in  Selected-Works/  as before
+        (e.g. Selected-Works/silent-suites-thumbnail.jpg) and point the
+        `image` field at it.
+
+     4. Fill in the text fields below (title, oneLiner, role, brief, …).
+
+     5. Run the build:   node build/generate.js     (or: npm run build)
+        This writes projects/<slug>.html for every project.
+
+     6. Commit + push.
+
+   IMPORTANT — paths are case-sensitive once live on GitHub.
+   "Selected-Works" has a capital S and capital W. Match filenames exactly.
+
+   ------------------------------------------------------------
+   FIELD REFERENCE  (every field except title/slug is optional)
+   ------------------------------------------------------------
+     slug        URL + image-folder name. REQUIRED, unique.
+     title       Project name (bold in grids + case-study cover).
+     descriptor  One-line subtitle used in the carousel / grid.
+     image       Thumbnail for the grids + hero rotation.
+     url         Auto-set to projects/<slug>.html if you leave it off.
+
+     ── Case-study cover ──
+     oneLiner    One sentence: what it is + the result.
+     role        Your role,   e.g. "Lead Design Engineer".
+     client      Client name, or "—" if self-initiated.
+     year        e.g. "2025".
+     cover       Cover image. Defaults to Selected-Works/<slug>/cover.jpg,
+                 then falls back to the thumbnail.
+
+     ── Sections ──
+     brief       The problem + hard constraints (a paragraph).
+     process     Up to four steps. Defaults to the sketch/cad/prototype/
+                 final.jpg files in the folder. Override labels/images here.
+     decisions   { text, image } — the technical-depth section.
+     outcome     { text, image, metrics:[{label,value}, …] } — results +
+                 the stat cards (e.g. Weight saved / Part count / Unit cost).
+     gallery     Extra images. Defaults to gallery-*.jpg in the folder.
 ============================================================ */
 
 const WORKS = [
   {
+    slug: "silent-suites",
     title: "Silent Suites",
     descriptor: "Soundproofing Booth Design",
     image: "Selected-Works/silent-suites-thumbnail.jpg",
-    url: "#"
+
+    // ---- Case-study cover ----
+    oneLiner: "A modular office phone booth that drops interior noise by 32 dB while shipping flat.",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    // cover: auto → Selected-Works/silent-suites/cover.jpg (falls back to thumbnail)
+
+    // ---- The brief ----
+    brief: "Open-plan offices needed a quiet space for calls, but existing booths " +
+           "were heavy, expensive to ship, and took a day to install. The brief: a " +
+           "one-person booth that meets a 30 dB sound-reduction target, ships as flat " +
+           "panels through a standard doorway, and assembles in under 30 minutes with " +
+           "no specialist tools — all under a €1,800 unit cost.",
+
+    // ---- Process ----
+    // Leave this off entirely to auto-load sketch/cad/prototype/final.jpg.
+    // Shown here so you can see the shape / rename a step if you want.
+    process: [
+      { label: "Sketch",    image: "Selected-Works/silent-suites/sketch.jpg" },
+      { label: "CAD",       image: "Selected-Works/silent-suites/cad.jpg" },
+      { label: "Prototype", image: "Selected-Works/silent-suites/prototype.jpg" },
+      { label: "Final",     image: "Selected-Works/silent-suites/final.jpg" }
+    ],
+
+    // ---- Key decisions (the technical depth) ----
+    decisions: {
+      text: "Two calls shaped the whole design. First, a decoupled double-wall with " +
+            "a 40 mm air gap and a mass-loaded vinyl core — chosen over thicker foam " +
+            "because the mass-spring-mass system kills the 200–2,000 Hz speech band " +
+            "where it matters, at half the weight. Second, a cam-lock panel joint " +
+            "instead of screws: FEA showed the corner posts carried the load, so the " +
+            "panels could be non-structural and snap together, which is what made the " +
+            "flat-pack and 30-minute assembly possible."
+      // image: auto → Selected-Works/silent-suites/decisions.jpg
+    },
+
+    // ---- Outcome ----
+    outcome: {
+      text: "The production booth hit 32 dB of reduction — two over target — and " +
+            "ships as six flat panels that pass through an 80 cm door.",
+      // image: auto → Selected-Works/silent-suites/outcome.jpg
+      metrics: [
+        { label: "Weight saved", value: "−32%" },
+        { label: "Part count",   value: "14 → 6" },
+        { label: "Unit cost",    value: "−18%" }
+      ]
+    }
+
+    // gallery: auto → any Selected-Works/silent-suites/gallery-*.jpg
   },
+
   {
+    slug: "coral-cycles",
     title: "Coral Cycles",
     descriptor: "Transportation Design",
     image: "Selected-Works/coral-cycles-thumbnail.jpg",
-    url: "#"
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "safety-by-design",
     title: "Safety By Design",
     descriptor: "Wearable Safety Design",
     image: "Selected-Works/safety-by-design-thumbnail.jpg",
-    url: "#"
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "light-shield",
     title: "Light Shield",
     descriptor: "A Wearable Safety Solution",
-    image: "Selected-Works/tech-and-touch-thumbnail.jpg",
-    url: "#"
+    image: "Selected-Works/light-shield-thumbnail.jpg",
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "tech-and-touch",
     title: "Tech & Touch",
     descriptor: "Shoe Box Design Study",
-    image: "Selected-Works/acoustic-headset.jpg",
-    url: "#"
+    image: "Selected-Works/tech-and-touch-thumbnail.jpg",
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "from-core-to-casing",
     title: "From Core to Casing",
     descriptor: "An Egg Housing Study",
     image: "Selected-Works/from-core-to-casing-thumbnail.jpg",
-    url: "#"
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "guardian-links",
     title: "Guardian Links",
     descriptor: "A Wearable Safety Solution",
     image: "Selected-Works/guardian-links-thumbnail.jpg",
-    url: "#"
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   },
+
   {
+    slug: "branding-bottlenecks",
     title: "Branding Bottlenecks",
     descriptor: "A Bottle Redesign Study",
     image: "Selected-Works/branding-bottlenecks-thumbnail.jpg",
-    url: "#"
+    oneLiner: "",
+    role: "Lead Design Engineer",
+    client: "—",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   }
 ];
+
+/* ------------------------------------------------------------
+   Make WORKS available to the Node build script as well as the
+   browser. In the browser, `module` is undefined and this is
+   skipped — the carousel/grid keep reading the global WORKS.
+------------------------------------------------------------ */
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = WORKS;
+}

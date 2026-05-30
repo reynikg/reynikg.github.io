@@ -119,7 +119,7 @@ a { color: inherit; text-decoration: none; }
   width: clamp(300px, 46%, 520px);
   border-radius: 4px;
 }
-.hero__name { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 500; }
+.hero__name { font-family: var(--font-display); font-size: clamp(30px, 6vw, 54px); font-weight: 500; }
 .hero__role { font-size: 16px; color: var(--panel-ink); opacity: .75; margin-top: 2px; }
 .hero__lead { font-size: 17px; margin: 22px 0 28px; max-width: 34ch; }
 
@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
   max-width: var(--maxw); margin: 0 auto;
   padding: 26px var(--pad);
   border-bottom: 1px solid var(--line);
-  margin-top: clamp(40px, 6vw, 72px);
+  margin-top: clamp(10px, 6vw, 30px);
 }
 .strip p { color: var(--ink-soft); font-size: 15px; }
 
@@ -399,4 +399,173 @@ a { color: inherit; text-decoration: none; }
   .contact-hero__logo { min-height: 200px; }
   .contact-main__inner { grid-template-columns: 1fr; }
   .contact-form__row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   CASE STUDY  (projects/<slug>.html — generated from works.js)
+   Refined-minimal, generous whitespace, quiet section labels.
+============================================================ */
+
+.case {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 40px) var(--pad) clamp(72px, 9vw, 120px);
+}
+
+/* small "back to portfolio" link above the title */
+.case__back {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14px; color: var(--ink-faint);
+  margin-bottom: clamp(20px, 4vw, 36px);
+  transition: color .2s ease;
+}
+.case__back:hover { color: var(--ink); }
+.case__back svg { width: 14px; height: 14px; }
+
+/* the small uppercase label that opens each section */
+.case__eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint);
+  margin-bottom: 16px;
+}
+
+/* generous gap between the major blocks */
+.case__section { margin-top: clamp(56px, 9vw, 104px); }
+.case__section:first-of-type { margin-top: clamp(32px, 5vw, 56px); }
+
+/* ---------- 1 · Cover ---------- */
+.case__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6.5vw, 72px);
+  font-weight: 500; letter-spacing: -.01em;
+  max-width: 18ch;
+}
+.case__lead {
+  font-size: clamp(18px, 2.4vw, 23px);
+  color: var(--ink-soft);
+  margin-top: 16px; max-width: 46ch; line-height: 1.45;
+}
+.case__meta {
+  display: flex; flex-wrap: wrap; gap: 8px 40px;
+  margin-top: 30px; padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px; color: var(--ink-soft);
+}
+.case__meta div { display: flex; flex-direction: column; gap: 2px; }
+.case__meta dt { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+.case__meta dd { font-weight: 500; color: var(--ink); }
+
+.case__cover {
+  margin-top: clamp(28px, 4vw, 44px);
+  width: 100%; aspect-ratio: 16 / 9;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 6px;
+}
+
+/* ---------- 2 · The brief ---------- */
+.case__brief p {
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: var(--ink); line-height: 1.55;
+  max-width: 62ch;
+}
+
+/* ---------- 3 · Process (signature 4-up) ---------- */
+.case__process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.6vw, 22px);
+}
+.case__step { display: block; }
+.case__step-img {
+  width: 100%; aspect-ratio: 4 / 5;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 5px;
+}
+.case__step-label {
+  margin-top: 12px; font-size: 14px; font-weight: 500;
+  color: var(--ink-soft); text-align: center;
+}
+
+/* ---------- 4 · Key decisions ---------- */
+.case__decisions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.case__decisions p {
+  font-size: 17px; color: var(--ink-soft); line-height: 1.65;
+}
+.case__decisions-img {
+  width: 100%; aspect-ratio: 4 / 3;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 6px;
+}
+
+/* ---------- 5 · Outcome ---------- */
+.case__outcome-img {
+  width: 100%; aspect-ratio: 16 / 9;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 6px;
+}
+.case__outcome p {
+  font-size: clamp(17px, 2vw, 20px); color: var(--ink-soft);
+  line-height: 1.6; max-width: 60ch; margin-top: 26px;
+}
+.case__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-top: clamp(24px, 3vw, 36px);
+}
+.case__metric {
+  background: var(--bg-alt);
+  border-radius: 8px;
+  padding: clamp(18px, 2.4vw, 26px);
+}
+.case__metric dt {
+  font-size: 13px; color: var(--ink-faint); margin-bottom: 8px;
+}
+.case__metric dd {
+  font-size: clamp(26px, 3.4vw, 36px); font-weight: 600;
+  letter-spacing: -.01em; color: var(--ink);
+}
+
+/* ---------- Gallery (optional extra images) ---------- */
+.case__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 1.6vw, 22px);
+}
+.case__gallery-img {
+  width: 100%; aspect-ratio: 3 / 2;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 6px;
+}
+
+/* ---------- 6 · Call to action ---------- */
+.case__cta {
+  margin-top: clamp(64px, 10vw, 120px);
+  padding: clamp(40px, 6vw, 72px) var(--pad);
+  background: var(--bg-alt);
+  border-radius: 10px;
+  text-align: center;
+}
+.case__cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px); font-weight: 500;
+  margin-bottom: 22px;
+}
+
+/* ---------- Case study responsive ---------- */
+@media (max-width: 760px) {
+  .case__process { grid-template-columns: repeat(2, 1fr); }
+  .case__decisions { grid-template-columns: 1fr; }
+  .case__metrics { grid-template-columns: 1fr; }
+  .case__gallery { grid-template-columns: 1fr; }
 }

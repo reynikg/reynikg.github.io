@@ -21,6 +21,14 @@
     return;
   }
 
+  // Where a project card links: an explicit url, else the generated
+  // case-study page projects/<slug>.html, else nowhere ("#").
+  function projectUrl(p) {
+    if (p.url) return p.url;
+    if (p.slug) return "projects/" + p.slug + ".html";
+    return "#";
+  }
+
   /* ---------- 1. HERO ROTATION ---------- */
 
   var layerA = document.getElementById("heroLayerA");
@@ -85,7 +93,7 @@
     WORKS.forEach(function (p) {
       var a = document.createElement("a");
       a.className = "work-card";
-      a.href = p.url || "#";
+      a.href = projectUrl(p);
       a.setAttribute("role", "listitem");
       a.innerHTML =
         '<div class="work-card__img" style="background-image:url(\'' +
@@ -103,7 +111,7 @@
     WORKS.forEach(function (p) {
       var a = document.createElement("a");
       a.className = "portfolio__item";
-      a.href = p.url || "#";
+      a.href = projectUrl(p);
       a.innerHTML =
         '<div class="portfolio__img" style="background-image:url(\'' +
           p.image + '\')" role="img" aria-label="' + escapeAttr(p.title) + '"></div>' +
