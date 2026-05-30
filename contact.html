@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Robert Reynik</title>
+  <meta name="description" content="Get in touch with Robert Reynik for design engineering projects and collaborations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html">Robert Reynik</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="writing.html">Writing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="is-active" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== GREETING ===================== -->
+    <section class="contact-hero">
+      <div class="contact-hero__inner">
+        <!-- Monogram placeholder — swap for your real logo (images/logo.svg) -->
+        <div class="contact-hero__logo" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="150" height="150" role="img" aria-label="Monogram">
+            <text x="62" y="150" font-family="Cormorant Garamond, serif" font-size="170" font-weight="500" fill="#16161a" transform="scale(-1,1) translate(-150,0)">R</text>
+            <text x="40" y="135" font-family="Cormorant Garamond, serif" font-size="150" font-weight="500" fill="#1f4e87">R</text>
+          </svg>
+        </div>
+        <div class="contact-hero__text">
+          <!-- Cycles through greetings in different languages (see js/main.js) -->
+          <h1 class="hello" id="helloGreeting" aria-label="Hello">Hello</h1>
+          <p>
+            Have a question or want to collaborate? Feel free to reach out.
+            Whether you're interested in discussing a project, learning more about
+            my work, or simply sharing your thoughts, I'd be happy to hear from you.
+            Use the form below to get in touch, and I'll respond as soon as possible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DETAILS + FORM ===================== -->
+    <section class="contact-main">
+      <div class="contact-main__inner">
+        <div class="contact-main__details">
+          <h2 class="contact-name">Robert Reynik</h2>
+          <hr class="contact-rule">
+          <p class="contact-field"><span>Phone</span>+30 6944 615468</p>
+          <p class="contact-field"><span>Email</span><a href="mailto:reynikg@gmail.com">reynikg@gmail.com</a></p>
+        </div>
+
+        <!-- To make this actually send: create a free Formspree form and put your
+             endpoint in the action below (e.g. https://formspree.io/f/abcd1234).
+             Until then it does nothing on submit. -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="contact-form__row">
+            <label>First Name
+              <input type="text" name="first_name">
+            </label>
+            <label>Last Name
+              <input type="text" name="last_name">
+            </label>
+          </div>
+          <label>Email *
+            <input type="email" name="email" required>
+          </label>
+          <label>Message
+            <textarea name="message" rows="5"></textarea>
+          </label>
+          <button type="submit" class="btn btn--solid btn--block">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== SOCIAL BAR ===================== -->
+  <footer class="contact-social">
+    <div class="contact-social__inner">
+      <a href="mailto:reynikg@gmail.com">Email</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <script src="data/works.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

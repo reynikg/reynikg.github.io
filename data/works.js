@@ -23,27 +23,51 @@
 
 const WORKS = [
   {
+    title: "Silent Suites",
+    descriptor: "Soundproofing Booth Design",
+    image: "Selected-Works/silent-suites-thumbnail.jpg",
+    url: "#"
+  },
+  {
+    title: "Coral Cycles",
+    descriptor: "Transportation Design",
+    image: "Selected-Works/coral-cycles-thumbnail.jpg",
+    url: "#"
+  },
+  {
+    title: "Safety By Design",
+    descriptor: "Wearable Safety Design",
+    image: "Selected-Works/safety-by-design-thumbnail.jpg",
+    url: "#"
+  },
+  {
     title: "Light Shield",
-    descriptor: "A wearable safety solution",
-    image: "Selected-Works/light-shield.jpg",
+    descriptor: "A Wearable Safety Solution",
+    image: "Selected-Works/tech-and-touch-thumbnail.jpg",
     url: "#"
   },
   {
-    title: "Trike Concept",
-    descriptor: "Lightweight personal mobility",
-    image: "Selected-Works/orange-trike.jpg",
-    url: "#"
-  },
-  {
-    title: "Privacy Booths",
-    descriptor: "Acoustic focus pods for open offices",
-    image: "Selected-Works/privacy-booths.jpg",
-    url: "#"
-  },
-  {
-    title: "Acoustic Headset",
-    descriptor: "Ergonomic listening, rethought",
+    title: "Tech & Touch",
+    descriptor: "Shoe Box Design Study",
     image: "Selected-Works/acoustic-headset.jpg",
+    url: "#"
+  },
+  {
+    title: "From Core to Casing",
+    descriptor: "An Egg Housing Study",
+    image: "Selected-Works/from-core-to-casing-thumbnail.jpg",
+    url: "#"
+  },
+  {
+    title: "Guardian Links",
+    descriptor: "A Wearable Safety Solution",
+    image: "Selected-Works/guardian-links-thumbnail.jpg",
+    url: "#"
+  },
+  {
+    title: "Branding Bottlenecks",
+    descriptor: "A Bottle Redesign Study",
+    image: "Selected-Works/branding-bottlenecks-thumbnail.jpg",
     url: "#"
   }
 ];
