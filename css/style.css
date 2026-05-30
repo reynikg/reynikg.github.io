@@ -1,0 +1,237 @@
+/* ============================================================
+   Robert Reynik — portfolio styles
+   Refined-minimal. Generous whitespace, serif display name,
+   clean sans body. Edit the variables below to retheme.
+============================================================ */
+
+:root {
+  --ink:        #1d1d1f;   /* near-black text */
+  --ink-soft:   #4a4a4f;   /* secondary text */
+  --ink-faint:  #86868b;   /* hints, captions */
+  --line:       #e4e4e2;   /* hairline borders */
+  --bg:         #ffffff;
+  --bg-alt:     #f5f5f3;   /* alt section background */
+  --panel:      #aec3da;   /* the hero blue panel */
+  --panel-ink:  #1f2d3d;   /* dark text used on the blue panel */
+  --accent:     #1f4e87;   /* button / link accent */
+
+  --maxw: 1120px;
+  --pad:  clamp(20px, 5vw, 48px);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { line-height: 1.15; font-weight: 500; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 26px;
+  border-radius: 6px;
+  transition: transform .15s ease, background .2s ease, opacity .2s ease;
+}
+.btn:active { transform: scale(.98); }
+.btn--solid { background: var(--accent); color: #fff; }
+.btn--solid:hover { opacity: .9; }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 16px var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav__brand { font-family: var(--font-display); font-size: 22px; letter-spacing: .2px; }
+.nav__links { display: flex; gap: 28px; font-size: 15px; color: var(--ink-soft); }
+.nav__links a { transition: color .2s ease; }
+.nav__links a:hover { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  max-width: var(--maxw);
+  margin: clamp(24px, 5vw, 56px) auto 0;
+  padding: 0 var(--pad);
+  min-height: clamp(440px, 60vh, 620px);
+  display: flex;
+  align-items: center;
+}
+
+/* image area sits to the right, behind/around the panel */
+.hero__bg {
+  position: absolute;
+  top: 0; bottom: 0;
+  right: var(--pad);
+  left: clamp(0px, 18vw, 220px);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+.hero__layer {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero__layer.is-visible { opacity: 1; }
+
+.hero__caption {
+  position: absolute;
+  left: clamp(20px, 28vw, 360px);  /* clear of the blue panel */
+  bottom: 22px;
+  display: flex; flex-direction: column;
+  color: var(--ink);
+  text-shadow: 0 1px 2px rgba(255,255,255,.5);
+}
+.hero__caption-title { font-weight: 600; font-size: 17px; }
+.hero__caption-sub   { font-size: 15px; color: var(--ink-soft); }
+
+/* the blue panel, overlapping the image on the left */
+.hero__panel {
+  position: relative;
+  z-index: 2;
+  background: var(--panel);
+  color: var(--panel-ink);
+  padding: clamp(32px, 4vw, 52px);
+  width: clamp(300px, 46%, 520px);
+  border-radius: 4px;
+}
+.hero__name { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 500; }
+.hero__role { font-size: 16px; color: var(--panel-ink); opacity: .75; margin-top: 2px; }
+.hero__lead { font-size: 17px; margin: 22px 0 28px; max-width: 34ch; }
+
+/* ---------- Credibility strip ---------- */
+.strip {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 26px var(--pad);
+  border-bottom: 1px solid var(--line);
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.strip p { color: var(--ink-soft); font-size: 15px; }
+
+/* ---------- Generic section ---------- */
+.section {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) var(--pad);
+}
+.section--alt { max-width: none; background: var(--bg-alt); }
+.section--alt .section__head,
+.section--alt .cards { max-width: var(--maxw); margin-left: auto; margin-right: auto; }
+.section__head { margin-bottom: 36px; }
+.section__head h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 42px); }
+.section__sub { color: var(--ink-faint); font-size: 16px; margin-top: 6px; }
+
+/* ---------- Carousel (Selected work) ---------- */
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, 1fr);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 14px;        /* room for scrollbar */
+  scrollbar-width: thin;
+}
+.work-card { scroll-snap-align: start; display: block; }
+.work-card__img {
+  width: 100%; aspect-ratio: 4 / 3;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-alt);
+  border-radius: 4px;
+  transition: transform .4s ease;
+}
+.work-card:hover .work-card__img { transform: translateY(-4px); }
+.work-card__title { font-weight: 600; font-size: 17px; margin-top: 14px; }
+.work-card__desc  { color: var(--ink-faint); font-size: 15px; margin-top: 2px; }
+
+/* On wide screens, show them as a tidy 3-up grid instead of scrolling */
+@media (min-width: 880px) {
+  .carousel {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+  }
+}
+
+/* ---------- Writing cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card-article {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card-article:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+.card-article h3 { font-size: 18px; margin: 14px 0 6px; }
+.card-article p  { color: var(--ink-faint); font-size: 15px; }
+.tag {
+  display: inline-block; font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+}
+.tag--research { background: #e7eefb; color: #1f4e87; }
+.tag--tutorial { background: #e6f4ea; color: #1e6b3a; }
+.tag--studio   { background: #fbf0dd; color: #8a5a12; }
+
+/* ---------- Newsletter ---------- */
+.newsletter { background: var(--bg-alt); border-top: 1px solid var(--line); }
+.newsletter__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(48px, 7vw, 80px) var(--pad);
+}
+.newsletter h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 38px); }
+.newsletter p  { color: var(--ink-soft); margin: 8px 0 22px; }
+.newsletter__form { display: flex; gap: 12px; max-width: 460px; flex-wrap: wrap; }
+.newsletter__form input {
+  flex: 1; min-width: 220px;
+  padding: 12px 16px; font-size: 15px; font-family: inherit;
+  border: 1px solid var(--line); border-radius: 6px; background: #fff;
+}
+.newsletter__form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 28px var(--pad);
+  display: flex; justify-content: space-between;
+  color: var(--ink-faint); font-size: 14px;
+}
+
+/* ---------- Responsive: stack hero on small screens ---------- */
+@media (max-width: 720px) {
+  .hero { flex-direction: column; min-height: 0; }
+  .hero__bg { position: relative; left: 0; right: 0; height: 280px; order: 2; margin-top: 18px; }
+  .hero__panel { width: 100%; order: 1; }
+  .hero__caption { left: 18px; }
+  .cards { grid-template-columns: 1fr; }
+  .nav__links { gap: 18px; font-size: 14px; }
+}
+
+/* ---------- Respect reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__layer { transition: none; }
+  html { scroll-behavior: auto; }
+}

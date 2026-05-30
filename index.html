@@ -3,10 +3,119 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robert Reynik — Design Engineer</title>
+  <title>Robert Reynik — Product &amp; System Design Engineer</title>
+  <meta name="description" content="Portfolio and writing of Robert Reynik, product and system design engineer and PhD candidate running a one-person design studio.">
+
+  <!-- Fonts: Cormorant Garamond for the display name, Hanken Grotesk for everything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Robert Reynik</h1>
-  <p>Product and system design engineer. Site coming soon.</p>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html">Robert Reynik</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <!-- The two background layers cross-fade between project images.
+       The caption (bottom-left of the image) updates to name the
+       current project. Both are filled in by js/main.js from WORKS. -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__layer" id="heroLayerA"></div>
+      <div class="hero__layer" id="heroLayerB"></div>
+      <figcaption class="hero__caption" id="heroCaption">
+        <span class="hero__caption-title"></span>
+        <span class="hero__caption-sub"></span>
+      </figcaption>
+    </div>
+
+    <div class="hero__panel">
+      <h1 class="hero__name">Robert Reynik</h1>
+      <p class="hero__role">Product &amp; System Design Engineer</p>
+      <p class="hero__lead">
+        Design engineering grounded in research — turning hard problems
+        into things people can actually use.
+      </p>
+      <a class="btn btn--solid" href="#work">See selected work</a>
+    </div>
+  </section>
+
+  <!-- ===================== CREDIBILITY STRIP ===================== -->
+  <section class="strip">
+    <p>PhD candidate &nbsp;·&nbsp; runs a one-person design studio &nbsp;·&nbsp; selected clients &amp; labs</p>
+  </section>
+
+  <!-- ===================== SELECTED WORK (carousel) ===================== -->
+  <section class="section" id="work">
+    <div class="section__head">
+      <h2>Selected work</h2>
+      <p class="section__sub">A few recent projects.</p>
+    </div>
+
+    <!-- Cards are injected here by js/main.js -->
+    <div class="carousel" id="carousel" role="list" aria-label="Selected projects"></div>
+  </section>
+
+  <!-- ===================== WRITING / JOURNAL ===================== -->
+  <section class="section section--alt" id="writing">
+    <div class="section__head">
+      <h2>Writing</h2>
+      <p class="section__sub">Notes from the studio, tutorials, and research.</p>
+    </div>
+
+    <div class="cards">
+      <a class="card-article" href="#">
+        <span class="tag tag--research">Research</span>
+        <h3>Article headline</h3>
+        <p>One-line summary of what the piece is about.</p>
+      </a>
+      <a class="card-article" href="#">
+        <span class="tag tag--tutorial">Tutorial</span>
+        <h3>How-to headline</h3>
+        <p>One-line summary of what the piece is about.</p>
+      </a>
+      <a class="card-article" href="#">
+        <span class="tag tag--studio">Studio</span>
+        <h3>Studio note headline</h3>
+        <p>One-line summary of what the piece is about.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section class="newsletter" id="contact">
+    <div class="newsletter__inner">
+      <h2>Get in touch</h2>
+      <p>New essays &amp; build logs, occasionally.</p>
+      <!-- Replace action with your real form endpoint (e.g. Formspree) later -->
+      <form class="newsletter__form" onsubmit="return false;">
+        <input type="email" placeholder="Enter your email" aria-label="Email address" required>
+        <button type="submit" class="btn btn--solid">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <span>Social · Contact</span>
+    <span>© <span id="year"></span> Robert Reynik</span>
+  </footer>
+
+  <!-- Manifest first, then the logic that uses it -->
+  <script src="data/works.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
