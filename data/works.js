@@ -264,9 +264,42 @@ const WORKS = [
     role: "Lead Design Engineer",
     client: "55Peaks",
     year: "2025",
-    brief: "",
-    decisions: { text: "" },
-    outcome: { text: "", metrics: [] }
+    brief: "Climbing Mt. Olympus leaves a lasting mark. Visitors find plenty of standard" +
+           " souvenirs, but missing from the shelves is a piece balancing art with outdoor" +
+           " utility. This neck gaiter fills the gap. It features the legendary peaks in flat," +
+           " clean colors. The design draws inspiration from the vibrant mountain landscape." +
+           " A journey through Olympus National Park deserves a functional, wearable memory.",
+    decisions: { 
+      text: "The design concept originated from a sunset video captured on Mt. Olympus." +
+            " The gradient of the setting sun against the rocky terrain created a color" +
+            " palette that was impossible to ignore. In order to translate the video into" +
+            " a workable file, the video was deconstructed into individual frames, curated" +
+            " the most coherent moments and the stitched together using photobashing techniques." +
+            " A master palette was extracted from the video footage to guide the design's" +
+            " color system. However, raw footage rarely translates perfectly into a static print." +
+            " The colors were right, but the composition required a structural overhaul to ensure" +
+            " the flow remained balanced. A new pamoramic photograph was captured to better" +
+            " align with the design criteria. The image offers a seamless, wide-angle composition" +
+            " suitable for a sylindrical wrap, ensuring the design flows without visual interaption." +
+            " Crucially, the high-constrast texture of the raw file serves as an ideal base for the" +
+            " selected color palette, allowing the extracted sunset hues to be mapped onto the geometry" +
+            " with precision and depth. The canvas is split into levels which will guide the" +
+            " re-coloring process of image. The raw capture is translated into flat - vector" +
+            " style designs which easily translate into fabric. The levels map the focus and" +
+            " color group for the individual elements on the design. Areas of interest are" +
+            " designated and isolated to then be merged together into a coherent image. A lot" +
+            " attention is paid to the seams of the product, ensuring visual continuity to the" +
+            " design. Finally, bleed areas are added to the edges and the design is transformed" +
+            " to conform with the manufacturer's requirements."  
+    },
+    outcome: { text: "The resulting product is part of a limited collection" + 
+                     " available at the physical shop 55Peaks in Litohoro Pierias" +
+                     " - Greece.", 
+      metrics: [
+        { label: "Dimesions", value: "46mm x 500mm" },
+        { label: "Colors",   value: "Pantone©" },
+        { label: "Units sold",    value: "400+" }      
+    ] }
   },
 
   {

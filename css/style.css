@@ -339,6 +339,106 @@ a { color: inherit; text-decoration: none; }
 .edu__detail ul { list-style: none; }
 .edu__detail li { font-size: 16px; color: var(--ink-soft); padding: 4px 0; }
 
+/* ============================================================
+   ABOUT PAGE — collapsible sections (accordion) built from
+   data/about.js. All closed by default; each toggles on its own.
+============================================================ */
+.about-sections {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(8px, 3vw, 24px) var(--pad) 0;
+}
+
+.acc { border-bottom: 1px solid var(--line); }
+.acc:first-child { border-top: 1px solid var(--line); }
+
+/* the clickable header — title left, chevron right */
+.acc__head {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 26px 2px;
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; text-align: left;
+  color: var(--ink);
+}
+.acc__title {
+  position: relative;
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  padding-bottom: 7px;
+}
+/* the short underline accent under the title text (like the picture) */
+.acc__title::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--ink);
+}
+.acc__icon { color: var(--ink-faint); flex: 0 0 auto; transition: transform .35s ease; }
+.acc.is-open .acc__icon { transform: rotate(180deg); color: var(--ink); }
+.acc__head:hover .acc__icon { color: var(--ink); }
+
+/* smooth open/close via animatable grid rows (no JS height measuring) */
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+.acc.is-open .acc__panel { grid-template-rows: 1fr; }
+.acc__inner { overflow: hidden; min-height: 0; }
+.acc__content { padding: 2px 2px 30px; }
+
+/* ---------- one entry inside a section ---------- */
+.entry { padding: 20px 0; border-top: 1px solid var(--line); }
+.entry:first-child { border-top: none; padding-top: 6px; }
+.entry__head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+}
+.entry__title { font-weight: 500; font-size: 17px; color: var(--ink); }
+.entry__subtitle { color: var(--ink-soft); font-size: 15px; margin-top: 2px; }
+.entry__meta { color: var(--ink-faint); font-size: 14px; white-space: nowrap; flex: 0 0 auto; }
+.entry__body { margin-top: 12px; }
+.entry__body p { color: var(--ink-soft); font-size: 15px; max-width: 70ch; }
+.entry__body ul { list-style: none; margin-top: 2px; }
+.entry__body li {
+  position: relative; padding: 4px 0 4px 18px;
+  color: var(--ink-soft); font-size: 15px; max-width: 70ch;
+}
+.entry__body li::before {
+  content: ""; position: absolute; left: 2px; top: 12px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ink-faint);
+}
+.entry__links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 16px; }
+.entry__links a {
+  color: var(--accent); font-size: 14px; font-weight: 500;
+  border-bottom: 1px solid transparent; transition: border-color .2s ease;
+}
+.entry__links a:hover { border-color: var(--accent); }
+
+/* ---------- Skills: flat pills (like the picture) ---------- */
+.skills { display: flex; flex-wrap: wrap; gap: 14px; padding: 4px 2px 30px; }
+.skill {
+  border: 1px solid var(--line); border-radius: 24px;
+  padding: 10px 18px; background: #fff;
+  font-size: 14px; font-weight: 500; color: var(--ink);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.skill:hover { border-color: var(--ink-faint); transform: translateY(-1px); }
+
+/* ---------- Closing notes ---------- */
+.about-notes {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(28px, 5vw, 48px) var(--pad) 0;
+}
+.about-note { color: var(--ink-soft); font-size: 15px; }
+.about-note + .about-note { margin-top: 6px; }
+
+/* ---------- About responsive + reduced motion ---------- */
+@media (max-width: 560px) {
+  .entry__head { flex-direction: column; gap: 4px; }
+  .entry__meta { order: -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .acc__panel, .acc__icon { transition: none; }
+}
+
 /* ---------- Portfolio grid ---------- */
 .portfolio {
   max-width: var(--maxw); margin: 0 auto;

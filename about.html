@@ -49,68 +49,13 @@
       </div>
     </section>
 
-    <!-- ===================== EDUCATION ===================== -->
-    <section class="edu">
-      <div class="edu__inner">
-        <h2 class="page__title">Education</h2>
+    <!-- ===================== DETAIL SECTIONS (accordion) =====================
+         Built from data/about.js by js/about.js. Edit content there —
+         no need to touch this file to add entries or whole sections. -->
+    <section class="about-sections" id="aboutSections" aria-label="Background"></section>
 
-        <div class="edu__row">
-          <div class="edu__label">
-            <span class="edu__period">2026–today</span><br>
-            University of Western Macedonia — Greece
-          </div>
-          <div class="edu__detail">
-            <p><strong>PhD candidate</strong> Computational and Biomechanical Prosthetics Design: Development of an Integrated Framework for Personalized Optimization and Manufacturing.</p>
-          </div>
-        </div>
-
-        <div class="edu__row">
-          <div class="edu__label">
-            <span class="edu__period">2019–2024</span><br>
-            University of Western Macedonia — Greece
-          </div>
-          <div class="edu__detail">
-            <p><strong>Bachelor's</strong> in Product and System Design Engineering, with an integrated <strong>Master's</strong> in Product Design Engineering.</p>
-            <p>Dissertation titled "<em>Computational Design of Unmanned Surface Vessels (USV)</em>", reflecting a special interest in integrating computational and algorithmic design into the product design cycle.</p>
-            <p>Graduated with honors — Grade 8.71.</p>
-          </div>
-        </div>
-
-        <div class="edu__row">
-          <div class="edu__label">Seminars</div>
-          <div class="edu__detail">
-            <ul>
-              <li>Principles of Engineering Design (ACT)</li>
-              <li>Introduction to Robotics &amp; Artificial Intelligence (ACT)</li>
-              <li>Cryptology (ACT)</li>
-              <li>Computer Science — Interactive Game Design (ACT)</li>
-              <li>Introduction to Electronics &amp; Robotics Programming (ACT)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="edu__row">
-          <div class="edu__label">Distinctions / Awards</div>
-          <div class="edu__detail">
-            <ul>
-              <li>Panhellenic Literary Poetry Competition</li>
-              <li>Panhellenic Writing Competition Award</li>
-              <li>Panhellenic Poetry Competition of the Municipality of Kalavryta</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="edu__row">
-          <div class="edu__label">Language Skills</div>
-          <div class="edu__detail">
-            <ul>
-              <li>C2 Proficiency in the English language</li>
-              <li>B1 Proficiency in the Chinese language</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Closing notes (military service, references) -->
+    <div class="about-notes" id="aboutNotes"></div>
   </main>
 
   <footer class="footer">
@@ -120,10 +65,13 @@
       <a href="http://www.linkedin.com/in/robert-reynik-004498245">LinkedIn</a>
       <a href="https://www.instagram.com/robert_reynik/">Instagram</a>
     </span>
-    <span>© <span id="year"></span> Robert Reynik</span>
+    <span>© 2021 - <span id="year"></span> Robert Reynik</span>
   </footer>
 
   <script src="data/works.js"></script>
   <script src="js/main.js"></script>
+  <!-- About-page content + accordion -->
+  <script src="data/about.js"></script>
+  <script src="js/about.js"></script>
 </body>
 </html>
