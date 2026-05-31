@@ -29,6 +29,13 @@
     return "#";
   }
 
+  // Newest first: you add new projects to the BOTTOM of works.js, so we
+  // reverse the list everywhere it's shown. (slice() keeps WORKS intact.)
+  var RECENT = WORKS.slice().reverse();
+
+  // How many projects the homepage shows before "Load more".
+  var HOME_LIMIT = 9;
+
   /* ---------- 1. HERO ROTATION ---------- */
 
   var layerA = document.getElementById("heroLayerA");
@@ -92,7 +99,7 @@
 
   var carousel = document.getElementById("carousel");
   if (carousel) {
-    WORKS.forEach(function (p) {
+    RECENT.slice(0, HOME_LIMIT).forEach(function (p) {
       var a = document.createElement("a");
       a.className = "work-card";
       a.href = projectUrl(p);
@@ -120,7 +127,7 @@
 
   var grid = document.getElementById("portfolioGrid");
   if (grid) {
-    WORKS.forEach(function (p) {
+    RECENT.forEach(function (p) {
       var a = document.createElement("a");
       a.className = "portfolio__item";
       a.href = projectUrl(p);

@@ -18,9 +18,8 @@
   <!-- ===================== NAV ===================== -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html" aria-label="Robert Reynik — home"><img class="nav__logo" src="images/RR-logo.svg" alt="Robert Reynik" width="40" height="40"></a>
+      <a class="nav__brand" class="is-active" href="index.html" aria-label="Robert Reynik — home"><img class="nav__logo" src="images/RR-logo.svg" alt="Robert Reynik" width="40" height="40"></a>
       <nav class="nav__links" aria-label="Primary">
-        <!-- <a href="index.html" class="is-active" aria-current="page">Home</a> -->
         <a href="portfolio.html">Portfolio</a>
         <a href="writing.html">Articles</a>
         <a href="about.html">About</a>
@@ -57,12 +56,16 @@
   <!-- ===================== SELECTED WORK (carousel) ===================== -->
   <section class="section" id="work">
     <div class="section__head">
-      <h2>Selected work</h2>
-      <p class="section__sub">A few recent projects.</p>
+      <h2>Recent projects</h2>
+      <p class="section__sub">A few of the most recent projects.</p>
     </div>
 
-    <!-- Cards are injected here by js/main.js -->
-    <div class="carousel" id="carousel" role="list" aria-label="Selected projects"></div>
+    <!-- Cards are injected here by js/main.js (9 most recent) -->
+    <div class="carousel" id="carousel" role="list" aria-label="Recent projects"></div>
+
+    <div class="section__more">
+      <a class="btn btn--solid" href="portfolio.html">Load More</a>
+    </div>
   </section>
 
   <!-- ===================== WRITING / JOURNAL ===================== -->
