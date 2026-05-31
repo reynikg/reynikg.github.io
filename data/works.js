@@ -237,6 +237,66 @@ const WORKS = [
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
+  },
+
+  {
+    slug: "olympus-patch-packaging",
+    title: "Olympus Patch Packaging",
+    descriptor: "A patch packaging solution",
+    type: "Professional Work",
+    image: "Selected-Works/55peaks-patch-packaging-thumbnail.jpg",
+    oneLiner: "A packaging solution for 10cm x 7cm embroidery patches",
+    role: "Lead Design Engineer",
+    client: "55Peaks",
+    year: "2026",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
+  },
+
+  {
+    slug: "olympus-themed-neckgaiter-design",
+    title: "Mt Olympus Neckgaiter Design",
+    descriptor: "A Mt. Olympus neckgaiter design",
+    type: "Professional Work",
+    image: "Selected-Works/55peaks-neckgaiter-olympus01-thumbnail.jpg",
+    oneLiner: "A neckgaiter design focused on Mt. Olympus - Greece",
+    role: "Lead Design Engineer",
+    client: "55Peaks",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
+  },
+
+  {
+    slug: "mytikas-peak-patch-design",
+    title: "Mytikas Peak Patch Design",
+    descriptor: "Embroidery patch design of Mytikas Summit",
+    type: "Professional Work",
+    image: "Selected-Works/55Peaks-Mytikas-Design-thumbnail.jpg",
+    oneLiner: "A neckgaiter design focused on Mt. Olympus - Greece",
+    role: "Lead Design Engineer",
+    client: "55Peaks",
+    year: "2025",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
+  },
+
+  {
+    slug: "skala-peak-patch-design",
+    title: "Skala Peak Patch Design",
+    descriptor: "Embroidery patch design of Skala Summit",
+    type: "Professional Work",
+    image: "Selected-Works/55peaks-skala-patch-design-thumbnail.jpg",
+    oneLiner: "A neckgaiter design focused on Mt. Olympus - Greece",
+    role: "Lead Design Engineer",
+    client: "55Peaks",
+    year: "2026",
+    brief: "",
+    decisions: { text: "" },
+    outcome: { text: "", metrics: [] }
   }
 ];
 
