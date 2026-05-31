@@ -33,8 +33,7 @@
 
   var layerA = document.getElementById("heroLayerA");
   var layerB = document.getElementById("heroLayerB");
-  var captionTitle = document.querySelector(".hero__caption-title");
-  var captionSub = document.querySelector(".hero__caption-sub");
+  var heroLink = document.getElementById("heroLink");
 
   // Only run the hero rotation on pages that actually have a hero.
   if (layerA && layerB) {
@@ -55,9 +54,12 @@
   var idx = 0;
   var showingA = true;
 
-  function applyCaption(project) {
-    if (captionTitle) captionTitle.textContent = project.title;
-    if (captionSub) captionSub.textContent = project.descriptor;
+  // Point the hero link at the current project's case-study page,
+  // and name it for screen readers (no visible caption any more).
+  function applyLink(project) {
+    if (!heroLink) return;
+    heroLink.setAttribute("href", projectUrl(project));
+    heroLink.setAttribute("aria-label", "View project: " + project.title);
   }
 
   function showProject(project) {
@@ -67,7 +69,7 @@
     incoming.classList.add("is-visible");
     outgoing.classList.remove("is-visible");
     showingA = !showingA;
-    applyCaption(project);
+    applyLink(project);
   }
 
   // Show the first one immediately.
@@ -95,11 +97,21 @@
       a.className = "work-card";
       a.href = projectUrl(p);
       a.setAttribute("role", "listitem");
+      a.setAttribute("aria-label", p.title + " — " + p.descriptor);
+      // Image only by default; title / description / type reveal on hover,
+      // with the image fading out to the background colour.
+      var typeTag = p.type
+        ? '<span class="work-card__type">' + escapeHtml(p.type) + "</span>"
+        : "";
       a.innerHTML =
         '<div class="work-card__img" style="background-image:url(\'' +
-          p.image + '\')" role="img" aria-label="' + escapeAttr(p.title) + '"></div>' +
-        '<div class="work-card__title">' + escapeHtml(p.title) + '</div>' +
-        '<div class="work-card__desc">' + escapeHtml(p.descriptor) + '</div>';
+          p.image + '\')" role="img" aria-label="' + escapeAttr(p.title) + '">' +
+          '<div class="work-card__overlay">' +
+            typeTag +
+            '<h3 class="work-card__title">' + escapeHtml(p.title) + "</h3>" +
+            '<p class="work-card__desc">' + escapeHtml(p.descriptor) + "</p>" +
+          "</div>" +
+        "</div>";
       carousel.appendChild(a);
     });
   }

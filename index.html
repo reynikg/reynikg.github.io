@@ -9,7 +9,7 @@
   <!-- Fonts: Cormorant Garamond for the display name, Hanken Grotesk for everything else -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,7 +18,7 @@
   <!-- ===================== NAV ===================== -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html">Robert Reynik</a>
+      <a class="nav__brand" href="index.html" aria-label="Robert Reynik — home"><img class="nav__logo" src="images/RR-logo.svg" alt="Robert Reynik" width="40" height="40"></a>
       <nav class="nav__links" aria-label="Primary">
         <a href="index.html" class="is-active" aria-current="page">Home</a>
         <a href="portfolio.html">Portfolio</a>
@@ -31,32 +31,27 @@
 
   <!-- ===================== HERO ===================== -->
   <!-- The two background layers cross-fade between project images.
-       The caption (bottom-left of the image) updates to name the
-       current project. Both are filled in by js/main.js from WORKS. -->
+       The whole image is a link to the current project's case study;
+       js/main.js updates the cross-fade and the link target from WORKS. -->
   <section class="hero" aria-label="Introduction">
-    <div class="hero__bg" aria-hidden="true">
-      <div class="hero__layer" id="heroLayerA"></div>
-      <div class="hero__layer" id="heroLayerB"></div>
-      <figcaption class="hero__caption" id="heroCaption">
-        <span class="hero__caption-title"></span>
-        <span class="hero__caption-sub"></span>
-      </figcaption>
-    </div>
+    <a class="hero__bg" id="heroLink" href="#" aria-label="View project">
+      <div class="hero__layer" id="heroLayerA" aria-hidden="true"></div>
+      <div class="hero__layer" id="heroLayerB" aria-hidden="true"></div>
+    </a>
 
     <div class="hero__panel">
       <h1 class="hero__name">Robert Reynik</h1>
       <p class="hero__role">Product &amp; System Design Engineer</p>
       <p class="hero__lead">
-        Design engineering grounded in research — turning hard problems
-        into things people can actually use.
+        Design is a process—a conversation between needs and solutions. It begins with a question: how can we solve this problem? Rooted in structure and creativity, design bridges the gap between challenges and outcomes. It is a journey of discovery, exploration, refinement, and purpose.
       </p>
-      <a class="btn btn--solid" href="#work">See selected work</a>
+      <a class="btn btn--solid" href="#work">Read more</a>
     </div>
   </section>
 
   <!-- ===================== CREDIBILITY STRIP ===================== -->
   <section class="strip">
-    <p>PhD candidate &nbsp;·&nbsp; runs a one-person design studio &nbsp;·&nbsp; selected clients &amp; labs</p>
+    <p>PhD candidate &nbsp;·&nbsp; one-person design studio &nbsp;·&nbsp; computational design &amp; lab</p>
   </section>
 
   <!-- ===================== SELECTED WORK (carousel) ===================== -->
@@ -101,11 +96,10 @@
     <div class="newsletter__inner">
       <h2>Get in touch</h2>
       <p>New essays &amp; build logs, occasionally.</p>
-      <!-- Replace action with your real form endpoint (e.g. Formspree) later -->
       <form class="newsletter__form" id="contactForm">
         <input type="email" id="userEmail" placeholder="Enter your email" aria-label="Email address" required>
-        <textarea id="userMessage" placeholder="Type your message" aria-label="Message" rows="4" required></textarea>
-        <button type="submit" class="btn btn--solid">Connect</button>
+        <!-- <textarea name="message" id="userMessage" placeholder="Type your message" aria-label="Message" rows="4" required></textarea> -->
+        <button type="submit" class="btn btn--solid" onclick="window.location.href='mailto:reynikg@gmail.com?subject=Inquiry%20from%20website&body=Hi%20there,%20I%20would%20like%20to...';">Connect</button>
       </form>
     </div>
   </section>

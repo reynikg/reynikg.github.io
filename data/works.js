@@ -51,6 +51,9 @@
      slug        URL + image-folder name. REQUIRED, unique.
      title       Project name (bold in grids + case-study cover).
      descriptor  One-line subtitle used in the carousel / grid.
+     type        Kind of work, shown on hover in the work section. One of:
+                 "Personal Project", "Academic Work", "Professional Work",
+                 "Other".
      image       Thumbnail for the grids + hero rotation.
      url         Auto-set to projects/<slug>.html if you leave it off.
 
@@ -77,21 +80,22 @@ const WORKS = [
     slug: "silent-suites",
     title: "Silent Suites",
     descriptor: "Soundproofing Booth Design",
+    type: "Academic Work",
     image: "Selected-Works/silent-suites-thumbnail.jpg",
 
     // ---- Case-study cover ----
-    oneLiner: "A modular office phone booth that drops interior noise by 32 dB while shipping flat.",
-    role: "Lead Design Engineer",
+    oneLiner: "A modular office phone booth that drops interior noise while shipping flat.",
+    role: "Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     // cover: auto → Selected-Works/silent-suites/cover.jpg (falls back to thumbnail)
 
     // ---- The brief ----
     brief: "Open-plan offices needed a quiet space for calls, but existing booths " +
-           "were heavy, expensive to ship, and took a day to install. The brief: a " +
-           "one-person booth that meets a 30 dB sound-reduction target, ships as flat " +
-           "panels through a standard doorway, and assembles in under 30 minutes with " +
-           "no specialist tools — all under a €1,800 unit cost.",
+           "are heavy, expensive to ship, and take time to install. The brief: a " +
+           "portable - modular booth that meets a 30 dB sound-reduction target, ships as flat " +
+           "panels through a standard doorway, and assembles in less than a day with " +
+           "no specialist tools.",
 
     // ---- Process ----
     // Leave this off entirely to auto-load sketch/cad/prototype/final.jpg.
@@ -134,11 +138,12 @@ const WORKS = [
     slug: "coral-cycles",
     title: "Coral Cycles",
     descriptor: "Transportation Design",
+    type: "Academic Work",
     image: "Selected-Works/coral-cycles-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -148,11 +153,12 @@ const WORKS = [
     slug: "safety-by-design",
     title: "Safety By Design",
     descriptor: "Wearable Safety Design",
+    type: "Academic Work",
     image: "Selected-Works/safety-by-design-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -162,11 +168,12 @@ const WORKS = [
     slug: "light-shield",
     title: "Light Shield",
     descriptor: "A Wearable Safety Solution",
+    type: "Academic Work",
     image: "Selected-Works/light-shield-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -176,11 +183,12 @@ const WORKS = [
     slug: "tech-and-touch",
     title: "Tech & Touch",
     descriptor: "Shoe Box Design Study",
+    type: "Academic Work",
     image: "Selected-Works/tech-and-touch-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -190,11 +198,12 @@ const WORKS = [
     slug: "from-core-to-casing",
     title: "From Core to Casing",
     descriptor: "An Egg Housing Study",
+    type: "Academic Work",
     image: "Selected-Works/from-core-to-casing-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -204,11 +213,12 @@ const WORKS = [
     slug: "guardian-links",
     title: "Guardian Links",
     descriptor: "A Wearable Safety Solution",
+    type: "Academic Work",
     image: "Selected-Works/guardian-links-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
@@ -218,11 +228,12 @@ const WORKS = [
     slug: "branding-bottlenecks",
     title: "Branding Bottlenecks",
     descriptor: "A Bottle Redesign Study",
+    type: "Academic Work",
     image: "Selected-Works/branding-bottlenecks-thumbnail.jpg",
     oneLiner: "",
     role: "Lead Design Engineer",
     client: "—",
-    year: "2025",
+    year: "2023",
     brief: "",
     decisions: { text: "" },
     outcome: { text: "", metrics: [] }
