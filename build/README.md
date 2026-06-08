@@ -31,10 +31,28 @@ text in `works.js`, drop images in a folder, and run one command.
 4. **Build:**
 
    ```bash
-   npm run build        # or:  node build/generate.js
+   npm run build                     # rebuild all (only changed pages are written)
+   node build/generate.js <slug>     # rebuild just one project
+   node build/generate.js a b c      # rebuild a few specific projects
+   node build/generate.js --force    # rewrite every page even if unchanged
    ```
 
 5. **Commit and push.** GitHub Pages serves the generated files directly.
+
+### Only changed pages are written (small git diffs)
+
+The builder compares the freshly generated HTML against what's already on
+disk and **only writes a file when its content actually changed**. So if you
+edit one project and run `npm run build`, every other `projects/*.html` stays
+byte-for-byte identical and `git` shows just the one page you touched — no more
+"all pages updated" mega-commits. Output legend:
+
+- `✓ … (new)` / `✓ … (updated)` — file was written
+- `· … (unchanged)` — already up to date, left alone
+- `· … (not targeted)` — skipped because you named specific slugs
+
+If you ever need to force a clean rebuild of everything (e.g. after changing the
+template in `build/generate.js`), use `--force`.
 
 ## How images are found
 

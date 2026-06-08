@@ -329,13 +329,48 @@ ${renderFooter()}
 `;
 }
 
-/* ---------- run ---------- */
+/* ---------- run ----------
+
+   Usage:
+     node build/generate.js                 build all (only rewrites pages
+                                             whose content actually changed)
+     node build/generate.js silent-suites   build only that project
+     node build/generate.js a b c           build only projects a, b, c
+     node build/generate.js --force         rewrite every page even if
+                                             unchanged (rarely needed)
+
+   Why the change-detection matters: the script compares the freshly
+   generated HTML against what's already on disk and ONLY writes when they
+   differ. So rebuilding after editing one project leaves every other file
+   byte-for-byte identical, and `git` sees just the one page you changed —
+   no more giant "all pages updated" commits.
+*/
 
 function main() {
+  const args = process.argv.slice(2);
+  const force = args.includes("--force");
+  // anything that isn't a flag is treated as a target slug
+  const targets = args.filter((a) => !a.startsWith("-"));
+  const wantAll = targets.length === 0;
+
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 
+  // Validate any requested slugs up front so typos fail loudly.
+  if (!wantAll) {
+    const known = new Set(WORKS.map((p) => p.slug).filter(Boolean));
+    const unknown = targets.filter((t) => !known.has(t));
+    if (unknown.length) {
+      console.error(`  ! unknown slug(s): ${unknown.join(", ")}`);
+      console.error(`    available: ${[...known].join(", ")}`);
+      process.exitCode = 1;
+      return;
+    }
+  }
+
   const seen = new Set();
-  let written = 0;
+  let wrote = 0;
+  let unchanged = 0;
+  let skipped = 0;
 
   WORKS.forEach((p) => {
     if (!p.slug) {
@@ -347,14 +382,33 @@ function main() {
     }
     seen.add(p.slug);
 
+    // When targeting specific projects, leave the rest untouched.
+    if (!wantAll && !targets.includes(p.slug)) {
+      skipped++;
+      return;
+    }
+
     const html = renderPage(p);
     const outPath = path.join(OUT_DIR, `${p.slug}.html`);
+
+    // Idempotent write: only touch the file if the bytes actually differ.
+    const current = fs.existsSync(outPath) ? fs.readFileSync(outPath, "utf8") : null;
+    if (!force && current === html) {
+      unchanged++;
+      console.log(`  · projects/${p.slug}.html (unchanged)`);
+      return;
+    }
+
     fs.writeFileSync(outPath, html, "utf8");
-    written++;
-    console.log(`  ✓ projects/${p.slug}.html`);
+    wrote++;
+    console.log(`  ✓ projects/${p.slug}.html ${current === null ? "(new)" : "(updated)"}`);
   });
 
-  console.log(`\nDone — ${written} case-study page${written === 1 ? "" : "s"} written to projects/.`);
+  const bits = [`${wrote} written`];
+  if (unchanged) bits.push(`${unchanged} unchanged`);
+  if (skipped) bits.push(`${skipped} not targeted`);
+  console.log(`\nDone — ${bits.join(", ")}.`);
+  if (wrote === 0) console.log("Nothing changed, so git will show no diff. 👍");
 }
 
 main();
