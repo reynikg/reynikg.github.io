@@ -46,6 +46,5 @@ hero panel, `--accent` for buttons, etc.
 
 - File paths are **case-sensitive** once live on GitHub. `Selected-Works`
   and the filenames in `works.js` must match exactly.
-- The newsletter form doesn't send anything yet — wire it to a service
-  like Formspree when you're ready (it needs no server).
-- Replace the four placeholder images with your real renders.
+- The newsletter form doesn't send anything yet — requires wiring to a service
+  like Formspree (it needs no server).
