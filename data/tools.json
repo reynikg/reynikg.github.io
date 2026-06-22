@@ -19,7 +19,7 @@
   },
   {
     "name": "Sudoku",
-    "url": "",
+    "url": "https://reynikg.github.io/simple-sudoku/",
     "image": "images/tools/sudoku.png",
     "description": "Clean, minimalist Sudoku with multiple difficulties, smart hints, and a distraction-free solving experience.",
     "type": "Game",
