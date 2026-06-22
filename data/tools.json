@@ -5,7 +5,7 @@
     "image": "images/tools/roguelike-blackjack.png",
     "description": "A roguelike take on blackjack — build a deck, chase upgrades, survive escalating runs.",
     "type": "Game",
-    "version": "1.10-stable",
+    "version": "1.11-stable",
     "year": 2026
   },
   {
