@@ -639,17 +639,19 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- 4 · Key decisions ---------- */
 .case__decisions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 5vw, 64px);
-  align-items: center;
+  display: flow-root; /* contains the floated image within the section */
 }
 .case__decisions p {
   font-size: 17px; color: var(--ink-soft); line-height: 1.65;
 }
+/* Image floats so the paragraph wraps around it (magazine style).
+   height:auto means it keeps its own proportions — 16:9, 9:16, 4:3
+   all integrate naturally without cropping. */
 .case__decisions-img {
-  width: 100%; aspect-ratio: 4 / 3;
-  background-size: cover; background-position: center;
+  float: right;
+  width: clamp(240px, 40%, 460px);
+  height: auto;
+  margin: 6px 0 20px clamp(24px, 4vw, 48px);
   background-color: var(--bg-alt);
   border-radius: 6px;
 }
@@ -685,16 +687,20 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Gallery (optional extra images) ---------- */
+/* Masonry-style columns: images keep their natural dimensions and the
+   grid flows around them, so nothing is cropped regardless of shape. */
 .case__gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(12px, 1.6vw, 22px);
+  column-count: 3;
+  column-gap: clamp(12px, 1.6vw, 22px);
 }
 .case__gallery-img {
-  width: 100%; aspect-ratio: 3 / 2;
-  background-size: cover; background-position: center;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 clamp(12px, 1.6vw, 22px);
   background-color: var(--bg-alt);
   border-radius: 6px;
+  break-inside: avoid;
 }
 
 /* ---------- 6 · Call to action ---------- */
@@ -712,11 +718,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Case study responsive ---------- */
+@media (max-width: 900px) {
+  .case__gallery { column-count: 2; }
+}
 @media (max-width: 760px) {
   .case__process { grid-template-columns: repeat(2, 1fr); }
-  .case__decisions { grid-template-columns: 1fr; }
   .case__metrics { grid-template-columns: 1fr; }
-  .case__gallery { grid-template-columns: 1fr; }
+  .case__gallery { column-count: 1; }
+  /* Stack the Key-Decisions image instead of floating it on phones. */
+  .case__decisions-img {
+    float: none;
+    width: 100%;
+    margin: 0 0 24px;
+  }
 }
 
 /* ---------- Image lightbox (click any case image to view full size) ---------- */

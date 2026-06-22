@@ -15,6 +15,14 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- Case-study images: dynamic layout + lightbox ----------
+     Runs on project pages, which DON'T load the WORKS manifest, so it
+     must come BEFORE the guard below. Gallery and Key-Decisions images
+     are converted from cropped CSS background-divs into real <img>
+     elements that keep their natural proportions, and every case image
+     can be clicked to view full size in a fading overlay. */
+  setupCaseImages();
+
   // Guard: if the manifest is missing or empty, do nothing gracefully.
   if (typeof WORKS === "undefined" || !WORKS.length) {
     console.warn("WORKS manifest is empty — add projects in data/works.js");
@@ -177,12 +185,51 @@
   }
   function escapeAttr(s) { return escapeHtml(s); }
 
-  /* ---------- Image lightbox (case-study pages) ----------
-     Project images are CSS background-image divs set to "cover", so
-     they crop. Clicking one opens an overlay that fades the page and
-     shows the full, uncropped image at its natural size. Clicking
-     away (or pressing Escape) reverts to the page untouched. */
-  (function setupLightbox() {
+  /* ---------- Case-study image behaviour ---------- */
+  function setupCaseImages() {
+    // Pull the url out of an inline/computed background-image.
+    function urlFromBg(el) {
+      var bg = el.style.backgroundImage ||
+        window.getComputedStyle(el).backgroundImage;
+      var m = /url\((['"]?)(.*?)\1\)/.exec(bg);
+      return m ? m[2] : "";
+    }
+
+    // Replace a background-image div with a real <img> that keeps the
+    // image's natural proportions (so nothing gets cropped), preserving
+    // its classes and accessible label.
+    function bgDivToImg(el) {
+      var url = urlFromBg(el);
+      if (!url) return el;
+      var img = document.createElement("img");
+      img.src = url;
+      img.alt = el.getAttribute("aria-label") || "";
+      img.loading = "lazy";
+      img.className = el.className;
+      el.parentNode.replaceChild(img, el);
+      return img;
+    }
+
+    // Gallery: convert to uncropped images that flow in a masonry grid.
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".case__gallery-img"),
+      bgDivToImg
+    );
+
+    // Key Decisions: convert the image and move it ahead of the text so
+    // the paragraph wraps around it (magazine style). Works for any
+    // aspect ratio because the <img> sizes to its own proportions.
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".case__decisions"),
+      function (block) {
+        var rawImg = block.querySelector(".case__decisions-img");
+        if (!rawImg) return;
+        var img = bgDivToImg(rawImg);
+        block.insertBefore(img, block.firstChild);
+      }
+    );
+
+    /* ----- Lightbox: click any case image to view it full size ----- */
     var selector =
       ".case__cover, .case__step-img, .case__decisions-img, " +
       ".case__outcome-img, .case__gallery-img";
@@ -206,19 +253,17 @@
     var imgEl = box.querySelector(".lightbox__img");
     var lastFocused = null;
 
-    function urlFromBg(el) {
-      var bg = el.style.backgroundImage ||
-        window.getComputedStyle(el).backgroundImage;
-      var m = /url\((['"]?)(.*?)\1\)/.exec(bg);
-      return m ? m[2] : "";
+    // Source url whether the element is a real <img> or a background div.
+    function urlFromEl(el) {
+      return el.tagName === "IMG" ? el.currentSrc || el.src : urlFromBg(el);
     }
 
     function open(el) {
-      var url = urlFromBg(el);
+      var url = urlFromEl(el);
       if (!url) return;
       lastFocused = document.activeElement;
       imgEl.src = url;
-      imgEl.alt = el.getAttribute("aria-label") || "";
+      imgEl.alt = el.getAttribute("aria-label") || el.alt || "";
       box.classList.add("is-open");
       box.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -232,7 +277,7 @@
       if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
 
-    images.forEach(function (el) {
+    Array.prototype.forEach.call(images, function (el) {
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
       el.addEventListener("click", function () { open(el); });
@@ -244,15 +289,14 @@
       });
     });
 
-    // Click anywhere on the backdrop (but not the image itself) closes.
     box.addEventListener("click", function (e) {
-      if (e.target === imgEl) return;
+      if (e.target === imgEl) return; // clicks on the image keep it open
       close();
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && box.classList.contains("is-open")) close();
     });
-  })();
+  }
 
   /* ---------- Get in touch connect button (index.html) ---------- */
   document.addEventListener('DOMContentLoaded', function() {
