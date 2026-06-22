@@ -718,3 +718,82 @@ a { color: inherit; text-decoration: none; }
   .case__metrics { grid-template-columns: 1fr; }
   .case__gallery { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   TOOLS & GAMES  (hidden page — tools.html, built from
+   data/tools.json by js/tools.js). Max 3 per row, 1 on phones.
+============================================================ */
+.tools {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) var(--pad) clamp(64px, 9vw, 110px);
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.tools-empty { color: var(--ink-faint); font-size: 16px; }
+
+/* the card itself — quiet, bordered, lifts gently on hover (like writing cards) */
+.tool-card {
+  display: flex; flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+a.tool-card { cursor: pointer; color: inherit; }
+a.tool-card:hover,
+a.tool-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  border-color: var(--ink-faint);
+}
+a.tool-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tool-card--soon { opacity: .92; }
+
+/* image area */
+.tool-card__media {
+  position: relative;
+  width: 100%; aspect-ratio: 16 / 10;
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.tool-card__img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+a.tool-card:hover .tool-card__img { transform: scale(1.03); }
+/* fallback shown when no image is set / it fails to load */
+.tool-card__placeholder {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 500; color: var(--ink-faint);
+  padding: 0 18px; text-align: center;
+}
+
+/* body */
+.tool-card__body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; }
+.tool-card__meta { display: flex; align-items: center; gap: 10px; }
+.tool-card__type {
+  font-size: 12px; font-weight: 500; letter-spacing: .04em;
+  color: var(--accent);
+  border: 1px solid var(--line);
+  padding: 4px 11px; border-radius: 20px;
+}
+.tool-card__soon {
+  font-size: 12px; font-weight: 500; letter-spacing: .04em;
+  color: var(--ink-faint);
+  background: var(--bg-alt);
+  padding: 4px 11px; border-radius: 20px;
+}
+.tool-card__title { font-size: 19px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+.tool-card__desc { color: var(--ink-soft); font-size: 15px; }
+.tool-card__sub { color: var(--ink-faint); font-size: 13px; margin-top: 2px; }
+
+/* responsive: 3 per row → 1 on small screens */
+@media (max-width: 760px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}
