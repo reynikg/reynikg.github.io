@@ -169,7 +169,7 @@ const WORKS = [
     title: "Light as a Defense Mechanism",
     descriptor: "A case study on product design through design protocols",
     type: "Academic Case Study",
-    image: "Selected-Works/self-defense-flashlight-thumbnail.jpg",
+    image: "Selected-Works/light-shield-thumbnail.jpg",
     oneLiner: "A self-defense flashlight used to demonstrate a Design for Safety methodology",
     role: "Product Design Researcher",
     client: "Academic Research",
