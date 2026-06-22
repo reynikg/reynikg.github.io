@@ -164,19 +164,73 @@ const WORKS = [
     outcome: { text: "", metrics: [] }
   },
 
-  {
+    {
     slug: "light-shield",
-    title: "Light Shield",
-    descriptor: "A Wearable Safety Solution",
-    type: "Academic Work",
-    image: "Selected-Works/light-shield-thumbnail.jpg",
-    oneLiner: "",
-    role: "Lead Design Engineer",
-    client: "—",
-    year: "2023",
-    brief: "",
-    decisions: { text: "" },
-    outcome: { text: "", metrics: [] }
+    title: "Light as a Defense Mechanism",
+    descriptor: "A case study on product design through design protocols",
+    type: "Academic Case Study",
+    image: "Selected-Works/self-defense-flashlight-thumbnail.jpg",
+    oneLiner: "A self-defense flashlight used to demonstrate a Design for Safety methodology",
+    role: "Product Design Researcher",
+    client: "Academic Research",
+    year: "2025",
+    brief: "Most personal-safety devices look like ordinary tools, leaving" +
+           " users underserved at the exact moments protection matters most." +
+           " This case study reframes a flashlight as a self-defense device," +
+           " using it to demonstrate how a Design for Safety (DfS) approach" +
+           " embeds user protection from the earliest stages of development." +
+           " Rather than chasing spontaneous ideas, the project treats design" +
+           " as a methodical, cyclical process driven by structured Design" +
+           " Protocols. Each stage, from problem mapping to photorealistic" +
+           " modeling, is documented, revisited and refined, turning 'light" +
+           " as a defense mechanism' into a coherent, safety-led product proposal.",
+
+    decisions: {
+      text: "The methodology unfolds as a sequence of Design Protocols, each" +
+            " structuring a different part of the problem. It begins with a" +
+            " concept map (mindmap) that defines the design space, answering" +
+            " questions such as how a flashlight is used, what mechanisms it" +
+            " relies on, and where it sits in relation to the user, while" +
+            " capturing every group with a potential stake in the solution." +
+            " From there, a Design Motive frames the nature of the problem" +
+            " through five lenses: WHO the user is (a civilian, untrained in" +
+            " self-defense, a potential theft victim), WHAT motivates them," +
+            " WHY the designer is intervening on their behalf, WHEN the product" +
+            " is used, and WHERE. This protocol resolves into a single stated" +
+            " direction, light as a self-defense mechanism, that anchors every" +
+            " decision downstream. A mood board then translates market research," +
+            " forms, geometries, materials and textures into one shared visual" +
+            " language, while a Risk and Opportunity Map adapts a SWOT analysis" +
+            " across four lenses: Safety, Market, Technology and Product." +
+            " Crucially, its entries describe the design process rather than the" +
+            " product itself; a desirable trait like rapid activation can" +
+            " register as a risk because it is difficult to implement reliably," +
+            " whereas the observation that most market products resemble" +
+            " ordinary flashlights becomes an opportunity for formal and" +
+            " mechanical differentiation. With the problem fully mapped," +
+            " sketching opens the ideation stage, exploring form, ergonomics," +
+            " surface mechanisms and user interaction through story-boards, and" +
+            " generating as many candidate solutions as possible. The proposal" +
+            " is finalized in CAD using computational and parametric methods," +
+            " whose non-destructive, iterative nature allows rapid versioning," +
+            " precise technical drawings, and finally a photorealistic render:" +
+            " the flashlight shown in operation, illuminating its surroundings," +
+            " with a charging port indicating battery level."
+    },
+    outcome: {
+      text: "Applied end to end, the Design Protocols demonstrate that the" +
+            " creative process is not a loose collection of ideas but a" +
+            " flexible, organized and cyclical path. Through continuous" +
+            " reevaluation, systematic documentation and the gradual" +
+            " translation of ideas into design proposals, the case study" +
+            " yields a product that meets user needs, prioritizes safety, and" +
+            " stands out for its functionality and reliability.",
+      metrics: [
+        { label: "Methodology",      value: "Design for Safety" },
+        { label: "Protocols Applied", value: "6" },
+        { label: "Final Output",      value: "Photorealistic 3D Model" }
+      ]
+    }
   },
 
   {
