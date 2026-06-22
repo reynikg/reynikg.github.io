@@ -23,7 +23,7 @@
     "image": "images/tools/sudoku.png",
     "description": "Clean, minimalist Sudoku with multiple difficulties, smart hints, and a distraction-free solving experience.",
     "type": "Game",
-    "version": "1.6-stable",
+    "version": "1.9-stable",
     "year": 2026
   },
   {
@@ -33,6 +33,15 @@
     "description": "Collect, arrange, and export visual inspiration into clean, shareable moodboards with ease.",
     "type": "Tool",
     "version": "1.4",
+    "year": 2026
+  },
+  {
+    "name": "Workout Tracker",
+    "url": "https://reynikg.github.io/moodboard/moodboard.html",
+    "image": "images/tools/workout-tracker.png",
+    "description": "Quick, simple and easy workout tracker for the Gym or home.",
+    "type": "Tool",
+    "version": "1.1",
     "year": 2026
   }
 ]
