@@ -112,8 +112,10 @@
 
   /* ---------- 2. CAROUSEL ---------- */
 
+  // The build (build/generate-index.js) normally bakes these cards into the
+  // HTML. We only build them here as a fallback when the container is empty.
   var carousel = document.getElementById("carousel");
-  if (carousel) {
+  if (carousel && !carousel.children.length) {
     RECENT.slice(0, HOME_LIMIT).forEach(function (p) {
       var a = document.createElement("a");
       a.className = "work-card";
@@ -141,7 +143,7 @@
   /* ---------- 3. PORTFOLIO GRID (portfolio.html) ---------- */
 
   var grid = document.getElementById("portfolioGrid");
-  if (grid) {
+  if (grid && !grid.children.length) {
     RECENT.forEach(function (p) {
       var a = document.createElement("a");
       a.className = "portfolio__item";
@@ -195,7 +197,8 @@
   /* ---------- Articles index builder (writing.html) ---------- */
   function buildWritingList() {
     var list = document.getElementById("writingList");
-    if (!list || typeof ARTICLES === "undefined" || !ARTICLES.length) return;
+    if (!list || list.children.length) return; // build already filled it
+    if (typeof ARTICLES === "undefined" || !ARTICLES.length) return;
 
     var TAG_LABELS = { research: "Research", tutorial: "Tutorial", studio: "Studio" };
 
@@ -239,7 +242,8 @@
      Shows the newest few as .card-article cards. */
   function buildWritingCards() {
     var grid = document.getElementById("writingCards");
-    if (!grid || typeof ARTICLES === "undefined" || !ARTICLES.length) return;
+    if (!grid || grid.children.length) return; // build already filled it
+    if (typeof ARTICLES === "undefined" || !ARTICLES.length) return;
 
     var TAG_LABELS = { research: "Research", tutorial: "Tutorial", studio: "Studio" };
     var MAX = 3;

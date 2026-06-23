@@ -42,10 +42,16 @@
       <h1 class="page__title">Writing</h1>
       <p class="page__sub">Notes from the studio, how-to tutorials, and research.</p>
 
-      <!-- This list is generated from data/articles.js by js/main.js.
-           To add an article, edit data/articles.js and run the build —
-           you never hand-edit this page. -->
-      <div class="writing-list" id="writingList"></div>
+      <!-- Baked in from data/articles.js by build/generate-index.js.
+           I edit data/articles.js and run the build; I never hand-edit this list.
+           js/main.js only fills this if the build left it empty. -->
+      <div class="writing-list" id="writingList"><!-- build:writing-list:start -->
+      <a class="writing-item" href="writing/clickable-grasshopper-geometry.html">
+        <div class="writing-item__meta"><span class="tag tag--tutorial">Tutorial</span><span class="writing-item__date">Jun 23, 2026</span></div>
+        <h2 class="writing-item__title">Clickable Grasshopper Geometry: A Python Face Selector for Rhino</h2>
+        <p class="writing-item__excerpt">A small Python component that lets you click faces of live Grasshopper geometry straight in the Rhino viewport — no baking, fully parametric, Mac and Windows.</p>
+      </a>
+      <!-- build:writing-list:end --></div>
     </section>
   </main>
 

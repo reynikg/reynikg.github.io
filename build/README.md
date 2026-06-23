@@ -1,4 +1,22 @@
-# Case-study builder
+# Build scripts
+
+There are four build scripts, all plain Node (no install needed for the build
+itself). `npm run build` runs them in order:
+
+- `generate.js` — one case-study page per project → `projects/<slug>.html`
+- `generate-articles.js` — one page per article → `writing/<slug>.html`
+- `generate-index.js` — bakes the homepage hero/carousel/Field Notes, the
+  portfolio grid, and the articles index straight into `index.html`,
+  `portfolio.html`, and `writing.html` (between their `<!-- build:... -->`
+  markers), so those pages carry their content without JavaScript
+- `generate-sitemap.js` — `sitemap.xml` + `robots.txt`
+
+There's also `optimize-images.js` (`npm run optimize`), which resizes and
+recompresses oversized images in place. It's the only script that needs a
+dependency, so it's a one-time `npm install` (it uses `sharp`). The day-to-day
+flow and full command list live in `../WORKFLOW.md`.
+
+## Case-study builder (generate.js)
 
 This turns each entry in `data/works.js` into a full case-study page at
 `projects/<slug>.html`. You never hand-write a project HTML file — you fill in
