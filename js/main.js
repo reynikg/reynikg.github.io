@@ -28,6 +28,7 @@
      writing page loads instead of WORKS. Must come BEFORE the WORKS
      guard below, since writing.html doesn't define WORKS. */
   buildWritingList();
+  buildWritingCards();
 
   // Guard: if the manifest is missing or empty, do nothing gracefully.
   if (typeof WORKS === "undefined" || !WORKS.length) {
@@ -230,6 +231,39 @@
         '<h2 class="writing-item__title">' + escapeHtml(a.title) + "</h2>" +
         '<p class="writing-item__excerpt">' + escapeHtml(excerpt) + "</p>";
       list.appendChild(el);
+    });
+  }
+
+  /* ---------- Writing cards (homepage #writing section) ----------
+     Built from the same ARTICLES manifest the writing.html index uses.
+     Shows the newest few as .card-article cards. */
+  function buildWritingCards() {
+    var grid = document.getElementById("writingCards");
+    if (!grid || typeof ARTICLES === "undefined" || !ARTICLES.length) return;
+
+    var TAG_LABELS = { research: "Research", tutorial: "Tutorial", studio: "Studio" };
+    var MAX = 3;
+
+    // Newest first (newest articles are added to the BOTTOM of articles.js).
+    var ordered = ARTICLES.slice().reverse().slice(0, MAX);
+
+    ordered.forEach(function (a) {
+      if (!a.slug) return;
+      var href = "writing/" + a.slug + ".html";
+      var label = TAG_LABELS[a.tag] || a.tag || "";
+      var tag = a.tag
+        ? '<span class="tag tag--' + escapeAttr(a.tag) + '">' + escapeHtml(label) + "</span>"
+        : "";
+      var summary = a.excerpt || a.description || "";
+
+      var el = document.createElement("a");
+      el.className = "card-article";
+      el.href = href;
+      el.innerHTML =
+        tag +
+        "<h3>" + escapeHtml(a.title) + "</h3>" +
+        "<p>" + escapeHtml(summary) + "</p>";
+      grid.appendChild(el);
     });
   }
 
