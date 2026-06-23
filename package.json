@@ -4,6 +4,9 @@
   "private": true,
   "description": "Robert Reynik portfolio — static site with a generator that builds a case-study page per project from data/works.js.",
   "scripts": {
-    "build": "node build/generate.js"
+    "build": "node build/generate.js && node build/generate-articles.js && node build/generate-sitemap.js",
+    "build:projects": "node build/generate.js",
+    "build:articles": "node build/generate-articles.js",
+    "build:sitemap": "node build/generate-sitemap.js"
   }
 }

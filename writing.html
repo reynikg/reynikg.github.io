@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Writing — Robert Reynik</title>
   <meta name="description" content="Articles, tutorials, and research notes by Robert Reynik.">
+  <meta name="author" content="Robert Reynik">
+  <link rel="canonical" href="https://robertreynik.com/writing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Robert Reynik">
+  <meta property="og:title" content="Writing — Robert Reynik">
+  <meta property="og:description" content="Articles, tutorials, and research notes by Robert Reynik.">
+  <meta property="og:url" content="https://robertreynik.com/writing.html">
+  <meta property="og:image" content="https://robertreynik.com/images/RR-logo2.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Writing — Robert Reynik">
+  <meta name="twitter:description" content="Articles, tutorials, and research notes by Robert Reynik.">
+  <meta name="twitter:image" content="https://robertreynik.com/images/RR-logo2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,38 +42,10 @@
       <h1 class="page__title">Writing</h1>
       <p class="page__sub">Notes from the studio, how-to tutorials, and research.</p>
 
-      <!-- Each article is one <a class="writing-item">. Copy a block to add one.
-           Later, this is the section a Jekyll blog would generate automatically. -->
-      <div class="writing-list">
-
-        <a class="writing-item" href="#">
-          <div class="writing-item__meta">
-            <span class="tag tag--research">Research</span>
-            <span class="writing-item__date">Coming soon</span>
-          </div>
-          <h2 class="writing-item__title">Computational design of unmanned surface vessels</h2>
-          <p class="writing-item__excerpt">A look at the algorithmic methods behind my dissertation, and what parametric workflows offer product design.</p>
-        </a>
-
-        <a class="writing-item" href="#">
-          <div class="writing-item__meta">
-            <span class="tag tag--tutorial">Tutorial</span>
-            <span class="writing-item__date">Coming soon</span>
-          </div>
-          <h2 class="writing-item__title">How to design a snap-fit connector in Fusion 360</h2>
-          <p class="writing-item__excerpt">A practical, step-by-step walkthrough for a clip that holds, releases cleanly, and survives repeated use.</p>
-        </a>
-
-        <a class="writing-item" href="#">
-          <div class="writing-item__meta">
-            <span class="tag tag--studio">Studio</span>
-            <span class="writing-item__date">Coming soon</span>
-          </div>
-          <h2 class="writing-item__title">Light Shield — a wearable safety solution</h2>
-          <p class="writing-item__excerpt">The brief, the constraints, and the decisions behind a handheld SOS device designed for elderly users.</p>
-        </a>
-
-      </div>
+      <!-- This list is generated from data/articles.js by js/main.js.
+           To add an article, edit data/articles.js and run the build —
+           you never hand-edit this page. -->
+      <div class="writing-list" id="writingList"></div>
     </section>
   </main>
 
@@ -75,7 +59,7 @@
     <span>© <span id="year"></span> Robert Reynik</span>
   </footer>
 
-  <script src="data/works.js"></script>
+  <script src="data/articles.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

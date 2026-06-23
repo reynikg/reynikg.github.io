@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click &amp; Select Grasshopper Mesh Faces in Rhino (Python) — Robert Reynik</title>
+  <meta name="description" content="Select Grasshopper mesh faces directly in the Rhino viewport without baking. A Python component casts a camera ray on each click and returns the picked face indices, mask, and preview mesh.">
+  <meta name="keywords" content="grasshopper, rhino, select mesh face, rhinocommon, mousecallback, ray mesh intersection, python component, without baking">
+  <meta name="author" content="Robert Reynik">
+  <link rel="canonical" href="https://robertreynik.com/writing/clickable-grasshopper-geometry.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Click &amp; Select Grasshopper Mesh Faces in Rhino (Python)">
+  <meta property="og:description" content="Select Grasshopper mesh faces directly in the Rhino viewport without baking. A Python component casts a camera ray on each click and returns the picked face indices, mask, and preview mesh.">
+  <meta property="og:url" content="https://robertreynik.com/writing/clickable-grasshopper-geometry.html">
+  <meta property="og:image" content="https://robertreynik.com/writing/clickable-grasshopper-geometry/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Click &amp; Select Grasshopper Mesh Faces in Rhino (Python)">
+  <meta name="twitter:description" content="Select Grasshopper mesh faces directly in the Rhino viewport without baking. A Python component casts a camera ray on each click and returns the picked face indices, mask, and preview mesh.">
+  <meta name="twitter:image" content="https://robertreynik.com/writing/clickable-grasshopper-geometry/cover.jpg">
+  <meta property="article:published_time" content="2026-06-23">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Clickable Grasshopper Geometry: A Python Face Selector for Rhino",
+  "description": "Select Grasshopper mesh faces directly in the Rhino viewport without baking. A Python component casts a camera ray on each click and returns the picked face indices, mask, and preview mesh.",
+  "author": {
+    "@type": "Person",
+    "name": "Robert Reynik"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Robert Reynik"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://robertreynik.com/writing/clickable-grasshopper-geometry.html"
+  },
+  "url": "https://robertreynik.com/writing/clickable-grasshopper-geometry.html",
+  "datePublished": "2026-06-23",
+  "dateModified": "2026-06-23",
+  "image": "https://robertreynik.com/writing/clickable-grasshopper-geometry/cover.jpg",
+  "keywords": "grasshopper, rhino, select mesh face, rhinocommon, mousecallback, ray mesh intersection, python component, without baking"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you select Grasshopper geometry without baking it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not with Rhino's standard tools. Grasshopper preview geometry isn't a real Rhino document object, so snaps, the gumball, and normal selection don't apply to it. The way around it is to build the interaction inside the definition — like this component does — by listening for viewport clicks and resolving them to faces yourself, which keeps everything parametric and avoids baking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you select a mesh face directly in the Rhino viewport?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convert the 2D click into a 3D ray that starts at the camera and passes through the clicked pixel, then intersect that ray with the mesh. The first face the ray hits is the one under the cursor. From there you read its face index and store it. Anchoring the ray at the camera matters, otherwise a hollow mesh can return its back wall instead of the face you're looking at."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on both Mac and Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The component relies on RhinoCommon's cross-platform MouseCallback rather than any OS-specific window hooks, so it behaves the same on macOS and Windows."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Robert Reynik — home"><img class="nav__logo" src="../images/RR-logo.svg" alt="Robert Reynik" width="40" height="40"></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../portfolio.html">Portfolio</a>
+        <a href="../writing.html" class="is-active" aria-current="page">Articles</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <a class="case__back" href="../writing.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to writing
+      </a>
+      <header class="article__head">
+        <h1 class="article__title">Clickable Grasshopper Geometry: A Python Face Selector for Rhino</h1>
+        <div class="article__meta">
+        <span class="tag tag--tutorial">Tutorial</span>
+        <time datetime="2026-06-23">June 23, 2026</time>
+        <span class="article__readtime">8 min read</span>
+      </div>
+      </header>
+      <div class="article__intro">
+        <p>Selecting geometry that Grasshopper generates — clicking a mesh face directly in the Rhino viewport — normally isn&#39;t possible without baking. For a recent project I needed exactly that: the ability to select objects created by the Grasshopper preview while staying inside a live, parametric definition. Baking wouldn&#39;t cut it, because once geometry is baked it can&#39;t easily interact with the rest of the Grasshopper script. And because of the way Grasshopper draws things on the screen, the geometry it creates exists... but not really.</p>
+        <p>So I wrote a small Python component that lets you select faces — for this project I wanted to pick certain faces on a mesh — straight in the Rhino viewport and feed those selections back into a live Grasshopper definition. It uses RhinoCommon&#39;s mouse callback and ray–mesh intersection, and it runs on both macOS and Windows.</p>
+      </div>
+      <aside class="article__tldr" aria-label="TL;DR — summary">
+        <p class="article__tldr-label">TL;DR</p>
+        <p>Grasshopper geometry is just a preview, so you can&#39;t normally select it without baking. This component listens for mouse clicks in the Rhino viewport, shoots a ray from the camera through the click point, finds the first mesh face it hits, and toggles that face in or out of a selection list. The selection comes back out of the component as indices, a boolean mask, and a preview mesh you can keep building with.</p>
+      </aside>
+      <div class="article__cover-wrap"><div class="article__cover article__img--placeholder" role="img" aria-label="A shaded Grasshopper mesh in the Rhino viewport with several faces highlighted as a selection."><span>Image: A shaded Grasshopper mesh in the Rhino viewport with several faces highlighted as a selection.</span></div></div>
+      <div class="article__body">
+      <h2 id="why-you-can-t-normally-click-grasshopper-geometry" class="article__h2">Why you can&#39;t normally click Grasshopper geometry</h2>
+      <p>To understand the problem, you have to understand where Grasshopper geometry actually lives.</p>
+      <p>Grasshopper is a parametric environment that sits on top of Rhino. When your definition runs, every mesh, surface, and curve it produces exists in memory and is painted into the Rhino viewport as a temporary preview. It looks completely real. You can orbit around it, you can see it shaded. But it is not a Rhino object. It has no place in the Rhino document, no object ID, nothing the rest of Rhino can grab onto.</p>
+      <p>That has two consequences that matter here. First, you can&#39;t select it. Rhino&#39;s normal selection tools, snaps, and gumball only work on real document objects, and preview geometry is not one of them. Second, it&#39;s ephemeral. Every time the definition recomputes, the old preview is thrown away and a fresh one is drawn. There&#39;s nothing stable to hold a selection against.</p>
+      <p>The usual escape hatch is to bake the geometry, which copies the preview into the Rhino document as a permanent object you can finally click. But baking severs the parametric link. The baked mesh no longer updates when you change a slider, and now you&#39;re managing a static copy by hand. For anything interactive, that defeats the point.</p>
+      <h2 id="the-project-that-started-it-faces-as-attractors" class="article__h2">The project that started it: faces as attractors</h2>
+      <p>The specific need to create this script came from a recent project — recent relative to when this was written, anyway. I wanted the ability to choose faces on a 3D model and use those faces as attractors: anchor points that drive a generated pattern. Geometry near the chosen faces gets one treatment, geometry further away gets another, and the pattern falls out of that distance relationship.</p>
+      <p>For that to work, I needed to manually pick the faces directly on the model. Typing in face indices by hand is tedious and time-consuming, which completely kills the &quot;it&#39;s a design tool&quot; feeling I wanted. It also made it hard to produce many iterations quickly, and unless you already knew Grasshopper and the underlying algorithm, the process wasn&#39;t intuitive. I wanted a real clicking method.</p>
+      <h2 id="the-core-idea-cast-a-ray-from-the-camera" class="article__h2">The core idea: cast a ray from the camera</h2>
+      <p>The theoretical model is simple. You activate the script within Grasshopper, and when you click somewhere on the Rhino viewport, you&#39;re actually pointing into 3D space along a line that starts at the camera and goes straight through the pixel you clicked. Whatever face that line hits first is the face you meant to pick.</p>
+      <p>The plan was: project a line from the Rhino camera through the click point, find the first face of the Grasshopper mesh it crosses, and toggle that face into a selection list. Click it again to remove it.</p>
+      <h2 id="how-the-script-works" class="article__h2">How the script works</h2>
+      <h3 id="step-01-remember-things-between-solves" class="article__h3">Step 01: Remember things between solves</h3>
+      <p>Grasshopper components are stateless by default — they forget everything once they finish solving. To hold onto a selection across recomputes, the script stores its data in Rhino&#39;s <code>sticky</code> dictionary, a small persistent store that survives between solutions. The current selection set, a debug log, and the live mesh all get parked there so they outlive any single run.</p>
+      <h3 id="step-02-listen-for-clicks" class="article__h3">Step 02: Listen for clicks</h3>
+      <p>The center of the script is a mouse callback — a class built on RhinoCommon&#39;s <code>MouseCallback</code> that quietly watches the viewport. When you press the left mouse button, it wakes up and does its work; it ignores everything else. This callback is what lets the component react to the viewport without you having to re-run anything.</p>
+      <h3 id="step-03-turn-a-2d-click-into-a-correctly-aimed-3d-ray" class="article__h3">Step 03: Turn a 2D click into a correctly aimed 3D ray</h3>
+      <p>On a click, the script grabs the click&#39;s screen coordinates and converts them into a line in world space using the viewport&#39;s <code>ClientToWorld</code>. That gives a line punching from the screen into the scene.</p>
+      <p>There&#39;s a catch: a hollow mesh has a front wall and a back wall, and a naive ray can accidentally report the back one. To avoid that, the script checks which end of the world-space line is closer to the camera, starts the ray there, and points it toward the far end. That guarantees the first hit is the face actually facing you, not the inside of the far wall. This was the detail that made selection feel correct instead of random.</p>
+      <h3 id="step-04-find-the-face" class="article__h3">Step 04: Find the face</h3>
+      <p>The ray is intersected against the mesh. If it connects, the script gets the hit point, asks the mesh for the closest face to that point, and reads back that face&#39;s index — its position in the mesh&#39;s list of faces.</p>
+      <h3 id="step-05-toggle-the-selection" class="article__h3">Step 05: Toggle the selection</h3>
+      <p>If the hit face is already selected, clicking removes it; if it isn&#39;t, clicking adds it. Simple on/off, which is exactly what you want for picking and un-picking faces by hand.</p>
+      <h3 id="step-06-nudge-the-definition-to-update" class="article__h3">Step 06: Nudge the definition to update</h3>
+      <p>Finally, it schedules a recompute a few milliseconds later so the component&#39;s outputs refresh with the new selection. Scheduling it (rather than recomputing immediately) keeps things from spiraling into an endless solve loop.</p>
+      <h2 id="inputs-and-outputs" class="article__h2">Inputs and Outputs</h2>
+      <p>The component is deliberately small. Three inputs, four outputs.</p>
+      <h3 id="inputs" class="article__h3">Inputs</h3>
+      <ul class="article__list">
+          <li><strong>Mesh</strong> — the target geometry you want to select faces on. This is the Grasshopper mesh the ray gets tested against.</li>
+          <li><strong>Reset</strong> — a button that clears the current selection and wipes the log, so you can start picking from scratch.</li>
+          <li><strong>Enable</strong> — a toggle that turns the whole thing on and off. The mouse callback is always-on by nature, so this matters: when you&#39;re done selecting, flip it off so the script isn&#39;t quietly listening for clicks and burning cycles in the background.</li>
+        </ul>
+      <h3 id="outputs" class="article__h3">Outputs</h3>
+      <ul class="article__list">
+          <li><strong>Debug</strong> — a running readout of what the script is doing: whether it&#39;s enabled, how many faces the mesh has, whether the callback is active, how many faces are selected, and details of the last click. This is what you watch when something isn&#39;t behaving.</li>
+          <li><strong>SelectedFaces</strong> — a preview mesh containing only the faces you&#39;ve selected. It&#39;s built by duplicating the input mesh and deleting everything you didn&#39;t pick, so you can pipe it straight into the rest of your definition.</li>
+          <li><strong>SelectedMask</strong> — a list of true/false values, one per face in the mesh, marking which faces are selected. Handy whenever you need a per-face on/off pattern to drive other logic.</li>
+          <li><strong>SelectedIndices</strong> — the sorted list of selected face indices. The plainest form of the selection, useful for referencing faces directly or feeding them into an attractor setup.</li>
+        </ul>
+      <h2 id="mac-and-windows" class="article__h2">Mac and Windows</h2>
+      <p>I wrote this so it runs on both macOS and Windows. It leans on Rhino&#39;s cross-platform mouse callback rather than any OS-specific window hooks, so the same definition behaves the same whether you&#39;re on a Mac or a PC.</p>
+      <h2 id="code" class="article__h2">Code</h2>
+      <p>Here&#39;s the full component:</p>
+      <pre class="article__code" data-lang="python"><code>import Rhino
+import Rhino.UI
+import Rhino.Geometry as rg
+import Grasshopper as gh
+import scriptcontext as sc
+
+S_SEL, S_CB, S_LOG, S_MSH = &quot;fp_selected&quot;, &quot;fp_callback&quot;, &quot;fp_log&quot;, &quot;fp_mesh&quot;
+comp = ghenv.Component
+
+# --- reset / init ---
+if Reset:
+    old = sc.sticky.get(S_CB)
+    if old is not None:
+        old.Enabled = False
+    sc.sticky[S_CB] = None
+    sc.sticky[S_SEL] = set()
+    sc.sticky[S_LOG] = [&quot;reset&quot;]
+if S_SEL not in sc.sticky: sc.sticky[S_SEL] = set()
+if S_LOG not in sc.sticky: sc.sticky[S_LOG] = [&quot;no click yet&quot;]
+
+sc.sticky[S_MSH] = Mesh   # keep live mesh available to the callback
+
+def _recompute(d):
+    comp.ExpireSolution(False)
+
+# --- the mouse callback ---
+class FacePicker(Rhino.UI.MouseCallback):
+    def OnMouseDown(self, e):
+        try:
+            if e.MouseButton != Rhino.UI.MouseButton.Left:
+                return
+            mesh = sc.sticky.get(S_MSH)
+            if mesh is None:
+                return
+            log = []
+            vp = e.View.ActiveViewport
+            vpt = e.ViewportPoint
+            log.append(&quot;viewport pt: (%d, %d)&quot; % (vpt.X, vpt.Y))
+            line = vp.ClientToWorld(rg.Point2d(vpt.X, vpt.Y))
+            # anchor the ray at the camera so the FIRST hit is the face
+            # facing the viewer, not the back wall of the hollow mesh
+            cam = vp.CameraLocation
+            a, b = line.From, line.To
+            origin, target = (a, b) if a.DistanceTo(cam) &lt;= b.DistanceTo(cam) else (b, a)
+            ray = rg.Ray3d(origin, target - origin)
+            t = rg.Intersect.Intersection.MeshRay(mesh, ray)
+            if isinstance(t, tuple):
+                t = t[0]
+            log.append(&quot;ray t: %s&quot; % t)
+            if t is not None and t &gt;= 0.0:
+                mp = mesh.ClosestMeshPoint(ray.PointAt(t), 0.0)
+                fi = mp.FaceIndex if mp else -1
+                log.append(&quot;hit face: %d&quot; % fi)
+                if fi != -1:
+                    sel = sc.sticky.get(S_SEL, set())
+                    if fi in sel: sel.discard(fi)
+                    else: sel.add(fi)
+                    sc.sticky[S_SEL] = sel
+            else:
+                log.append(&quot;no hit - ray missed&quot;)
+            sc.sticky[S_LOG] = log
+            doc = comp.OnPingDocument()
+            if doc is not None:
+                doc.ScheduleSolution(5,
+                    gh.Kernel.GH_Document.GH_ScheduleDelegate(_recompute))
+        except Exception as ex:
+            sc.sticky[S_LOG] = [&quot;CALLBACK ERROR: %r&quot; % ex]
+
+# --- enable / disable ---
+cb = sc.sticky.get(S_CB)
+if Enable:
+    if cb is None:
+        cb = FacePicker()
+        sc.sticky[S_CB] = cb
+    cb.Enabled = True
+elif cb is not None:
+    cb.Enabled = False
+
+# --- outputs ---
+sel = sc.sticky.get(S_SEL, set())
+SelectedIndices = sorted(sel)
+SelectedMask, SelectedFaces = [], None
+Debug = [&quot;Enable: %s&quot; % Enable,
+         &quot;Mesh in: %s  faces: %s&quot; % (Mesh is not None, Mesh.Faces.Count if Mesh else 0),
+         &quot;Callback on: %s&quot; % (sc.sticky.get(S_CB).Enabled if sc.sticky.get(S_CB) else False),
+         &quot;Selected: %d&quot; % len(sel),
+         &quot;--- last click ---&quot;] + sc.sticky.get(S_LOG, [])
+
+if Mesh is not None:
+    SelectedMask = [(i in sel) for i in range(Mesh.Faces.Count)]
+    if sel:
+        try:
+            prev = Mesh.DuplicateMesh()
+            prev.Faces.DeleteFaces([i for i in range(prev.Faces.Count) if i not in sel])
+            prev.Compact()
+            SelectedFaces = prev
+        except Exception as ex:
+            Debug.append(&quot;preview error: %r&quot; % ex)</code></pre>
+      </div>
+      <section class="article__faq" aria-label="Frequently asked questions">
+        <h2 class="article__h2">FAQ</h2>
+        <div class="article__faq-item">
+          <h3 class="article__faq-q">Can you select Grasshopper geometry without baking it?</h3>
+          <p class="article__faq-a">Not with Rhino&#39;s standard tools. Grasshopper preview geometry isn&#39;t a real Rhino document object, so snaps, the gumball, and normal selection don&#39;t apply to it. The way around it is to build the interaction inside the definition — like this component does — by listening for viewport clicks and resolving them to faces yourself, which keeps everything parametric and avoids baking.</p>
+        </div>
+        <div class="article__faq-item">
+          <h3 class="article__faq-q">How do you select a mesh face directly in the Rhino viewport?</h3>
+          <p class="article__faq-a">Convert the 2D click into a 3D ray that starts at the camera and passes through the clicked pixel, then intersect that ray with the mesh. The first face the ray hits is the one under the cursor. From there you read its face index and store it. Anchoring the ray at the camera matters, otherwise a hollow mesh can return its back wall instead of the face you&#39;re looking at.</p>
+        </div>
+        <div class="article__faq-item">
+          <h3 class="article__faq-q">Does this work on both Mac and Windows?</h3>
+          <p class="article__faq-a">Yes. The component relies on RhinoCommon&#39;s cross-platform <code>MouseCallback</code> rather than any OS-specific window hooks, so it behaves the same on macOS and Windows.</p>
+        </div>
+      </section>
+      <p class="article__refs">References: <a href="https://developer.rhino3d.com/api/rhinocommon/rhino.ui.mousecallback" target="_blank" rel="noopener">RhinoCommon MouseCallback documentation</a>, <a href="https://developer.rhino3d.com/guides/grasshopper/" target="_blank" rel="noopener">Grasshopper developer docs</a></p>
+      <section class="case__cta">
+        <h2>Want to work together?</h2>
+        <a class="btn btn--solid" href="../contact.html">Get in touch</a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__social">
+      <a href="../contact.html">Email</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </span>
+    <span>© <span id="year"></span> Robert Reynik</span>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -26,6 +26,11 @@
 const fs = require("fs");
 const path = require("path");
 
+/* SITE — public base URL, used for canonical + Open Graph URLs.
+   If you move to a custom domain, change this one line and rebuild.
+   (Keep it in sync with build/generate-articles.js and build/generate-sitemap.js.) */
+const SITE = "https://robertreynik.com";
+
 const ROOT = path.join(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "projects");
 const WORKS = require(path.join(ROOT, "data", "works.js"));
@@ -297,6 +302,13 @@ function renderPage(p) {
 
   const desc = p.oneLiner || p.descriptor || (p.title + " — case study by Robert Reynik");
 
+  /* canonical + social URLs */
+  const url = `${SITE}/projects/${p.slug}.html`;
+  const ogTitle = `${p.title} — Robert Reynik`;
+  const ogImage = img.cover
+    ? (/^https?:\/\//i.test(img.cover) ? img.cover : `${SITE}/${img.cover.replace(/^\/+/, "")}`)
+    : "";
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -304,7 +316,17 @@ function renderPage(p) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(p.title)} — Robert Reynik</title>
   <meta name="description" content="${escapeHtml(desc)}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="author" content="Robert Reynik">
+  <link rel="canonical" href="${url}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Robert Reynik">
+  <meta property="og:title" content="${escapeHtml(ogTitle)}">
+  <meta property="og:description" content="${escapeHtml(desc)}">
+  <meta property="og:url" content="${url}">
+${ogImage ? `  <meta property="og:image" content="${escapeHtml(ogImage)}">\n` : ""}  <meta name="twitter:card" content="${ogImage ? "summary_large_image" : "summary"}">
+  <meta name="twitter:title" content="${escapeHtml(ogTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(desc)}">
+${ogImage ? `  <meta name="twitter:image" content="${escapeHtml(ogImage)}">\n` : ""}  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">

@@ -885,3 +885,184 @@ a.tool-card:hover .tool-card__img { transform: scale(1.03); }
 @media (max-width: 760px) {
   .tools-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   ARTICLES  (writing/<slug>.html, built from data/articles.js by
+   build/generate-articles.js). A streamlined, magazine-style read:
+   intro → TL;DR → cover → body → FAQ. Shares the .case chrome
+   (back-link, CTA) and the global type tokens.
+============================================================ */
+
+/* The article column is narrower than a case study for comfortable
+   line length on long-form text. */
+.article {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 40px) var(--pad) clamp(72px, 9vw, 120px);
+}
+
+/* ---------- Head: title + meta line ---------- */
+.article__head { margin-bottom: clamp(28px, 4vw, 40px); }
+.article__title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5.5vw, 56px);
+  font-weight: 500; letter-spacing: -.01em;
+  line-height: 1.1;
+}
+.article__meta {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+  font-size: 14px; color: var(--ink-faint);
+}
+.article__meta time { color: var(--ink-faint); }
+.article__readtime {
+  position: relative;
+  padding-left: 14px;
+}
+.article__readtime::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--ink-faint); transform: translateY(-50%);
+}
+
+/* ---------- Intro (before the TL;DR) ---------- */
+.article__intro p {
+  font-size: clamp(18px, 2.2vw, 21px);
+  color: var(--ink); line-height: 1.6;
+  margin-bottom: 18px;
+}
+.article__intro p:last-child { margin-bottom: 0; }
+
+/* ---------- TL;DR callout ---------- */
+.article__tldr {
+  margin: clamp(28px, 4vw, 40px) 0;
+  padding: clamp(22px, 3vw, 30px) clamp(22px, 3.5vw, 34px);
+  background: var(--bg-alt);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+.article__tldr-label {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 10px;
+}
+.article__tldr p:not(.article__tldr-label) {
+  font-size: 16px; color: var(--ink-soft); line-height: 1.6;
+}
+
+/* ---------- Cover image (right after the TL;DR) ---------- */
+.article__cover-wrap { margin: clamp(28px, 4vw, 44px) 0; }
+.article__cover {
+  display: block; width: 100%; height: auto;
+  border-radius: 8px; background: var(--bg-alt);
+  cursor: zoom-in;
+}
+
+/* ---------- Body prose ---------- */
+.article__body { font-size: 17px; }
+.article__body > p {
+  color: var(--ink); line-height: 1.7;
+  margin-bottom: 22px; max-width: 68ch;
+}
+.article__h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 500; letter-spacing: -.01em;
+  margin: clamp(40px, 6vw, 64px) 0 18px;
+}
+.article__h3 {
+  font-size: clamp(18px, 2.2vw, 21px);
+  font-weight: 600; color: var(--ink);
+  margin: clamp(28px, 4vw, 38px) 0 12px;
+}
+
+/* lists */
+.article__list {
+  margin: 0 0 22px; padding-left: 1.3em;
+  color: var(--ink); line-height: 1.7; max-width: 68ch;
+}
+.article__list li { margin-bottom: 10px; }
+
+/* inline code + bold */
+.article__body code,
+.article__faq code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9em;
+  background: var(--bg-alt);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--panel-ink);
+}
+.article__body strong { font-weight: 600; color: var(--ink); }
+
+/* body images + figures */
+.article__img {
+  display: block; width: 100%; height: auto;
+  border-radius: 8px; background: var(--bg-alt);
+  margin: clamp(28px, 4vw, 40px) 0;
+  cursor: zoom-in;
+}
+.article__figure { margin: clamp(28px, 4vw, 40px) 0; }
+.article__figure .article__img { margin: 0; }
+.article__caption {
+  margin-top: 10px; font-size: 14px;
+  color: var(--ink-faint); text-align: center; line-height: 1.5;
+}
+
+/* placeholder shown until the real image file is dropped in writing/<slug>/ */
+.article__img--placeholder {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 9; cursor: default;
+  border: 1px dashed var(--line);
+  color: var(--ink-faint); font-size: 14px; text-align: center; padding: 20px;
+}
+
+/* code blocks (optional — not every article has them) */
+.article__code {
+  position: relative;
+  margin: clamp(24px, 3.5vw, 36px) 0;
+  padding: clamp(18px, 2.4vw, 24px);
+  background: #1d1d1f;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13.5px; line-height: 1.6;
+}
+.article__code code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #e8e8ea; background: none; padding: 0; white-space: pre;
+}
+.article__code[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute; top: 10px; right: 14px;
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: #86868b;
+}
+
+/* ---------- FAQ ---------- */
+.article__faq { margin-top: clamp(48px, 7vw, 72px); }
+.article__faq-item {
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.article__faq-item:last-child { border-bottom: 1px solid var(--line); }
+.article__faq-q {
+  font-size: 18px; font-weight: 600; color: var(--ink);
+  margin-bottom: 8px;
+}
+.article__faq-a { font-size: 16px; color: var(--ink-soft); line-height: 1.65; }
+
+/* ---------- References ---------- */
+.article__refs {
+  margin-top: clamp(40px, 6vw, 56px);
+  padding-top: 24px; border-top: 1px solid var(--line);
+  font-size: 14px; color: var(--ink-faint);
+}
+.article__refs a { color: var(--accent); }
+.article__refs a:hover { text-decoration: underline; }
+
+/* article CTA sits within the narrower column */
+.article .case__cta { margin-top: clamp(56px, 8vw, 96px); }
+
+@media (max-width: 760px) {
+  .article__code { font-size: 12.5px; }
+}

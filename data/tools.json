@@ -1,7 +1,7 @@
 [
   {
     "name": "Roguelike Blackjack",
-    "url": "https://reynikg.github.io/roguelike-blackjack/",
+    "url": "https://robertreynik.com/roguelike-blackjack/",
     "image": "images/tools/roguelike-blackjack.png",
     "description": "A roguelike take on blackjack — build a deck, chase upgrades, survive escalating runs.",
     "type": "Game",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Roguelike Liar's Dice",
-    "url": "https://reynikg.github.io/roguelike-liarsDice/",
+    "url": "https://robertreynik.com/roguelike-liarsDice/",
     "image": "images/tools/roguelike-liarsdice.png",
     "description": "Bluff and deduce through roguelike runs of Liar's Dice against increasingly cunning opponents.",
     "type": "Game",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Sudoku",
-    "url": "https://reynikg.github.io/simple-sudoku/",
+    "url": "https://robertreynik.com/simple-sudoku/",
     "image": "images/tools/sudoku.png",
     "description": "Clean, minimalist Sudoku with multiple difficulties, smart hints, and a distraction-free solving experience.",
     "type": "Game",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Moodboard",
-    "url": "https://reynikg.github.io/moodboard/moodboard.html",
+    "url": "https://robertreynik.com/moodboard/moodboard.html",
     "image": "images/tools/moodboard.png",
     "description": "Collect, arrange, and export visual inspiration into clean, shareable moodboards with ease.",
     "type": "Tool",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Workout Tracker",
-    "url": "https://reynikg.github.io/workout-tracker/",
+    "url": "https://robertreynik.com/workout-tracker/",
     "image": "images/tools/workout-tracker.png",
     "description": "Quick, simple and easy workout tracker for the Gym or home.",
     "type": "Tool",
