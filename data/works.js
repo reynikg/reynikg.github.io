@@ -171,8 +171,8 @@ const WORKS = [
     type: "Academic Case Study",
     image: "Selected-Works/light-shield-thumbnail.jpg",
     oneLiner: "A self-defense flashlight used to demonstrate a Design for Safety methodology",
-    role: "Product Design Researcher",
-    client: "Academic Research",
+    role: "Designer / Writer",
+    client: "Academic Work",
     year: "2025",
     brief: "Most personal-safety devices look like ordinary tools, leaving" +
            " users underserved at the exact moments protection matters most." +
