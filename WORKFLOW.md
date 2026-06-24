@@ -280,8 +280,6 @@ run:
 ```bash
 npm install        # ONCE per machine — installs sharp
 npm run optimize   # resizes anything oversized + recompresses, in place
-# The optimize command can run anywhere in the master
-# The optimize command can run for specific folders and files
 npm run optimize -- Selected-Works/light-shield              # one folder
 npm run optimize -- Selected-Works/coral-cycles-thumbnail.jpg   # one file
 ```
