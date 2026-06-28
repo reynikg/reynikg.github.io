@@ -131,9 +131,9 @@ const ABOUT = {
         {
           title: "Languages",
           details: [
-            "Greek — Native",
-            "English — C2 Proficiency (Michigan University Certification)",
-            "Mandarin Chinese — B2 (HSK, Confucius Institute)"
+            "Greek — Greek Citizenship (Native)",
+            "English — American Citizenship (C2 Proficiency (Michigan University Certification))",
+            "Mandarin Chinese — B1 (HSK, Confucius Institute)"
           ]
         },
         {
