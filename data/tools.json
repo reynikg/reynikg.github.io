@@ -43,5 +43,14 @@
     "type": "Tool",
     "version": "1.1",
     "year": 2026
+  },
+  {
+    "name": "Property Management",
+    "url": "https://robertreynik.com/property-management/",
+    "image": "images/tools/property-management.webp",
+    "description": "Internal server tool to help manage properties.",
+    "type": "Tool",
+    "version": "1.1",
+    "year": 2026
   }
 ]
