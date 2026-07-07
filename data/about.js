@@ -76,6 +76,15 @@ const ABOUT = {
       open: false,
       items: [
         {
+          title: "Freelance CAD Design",
+          subtitle: "Abel Oil Tools - Houston, Texas, USA",
+          meta: "2026",
+          details: [
+            "Designed a prototype model for presentation purposes. Developed a 3D CAD model of a working part for FEA simulation.",
+            "Performed the FEA simulation based on strict specifications and created the simulation results report."
+          ]
+        },
+        {
           title: "Apparel & Graphic Designer",
           subtitle: "55Peaks — Litohoro, Greece",
           meta: "2025 - 2026",

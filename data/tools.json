@@ -41,7 +41,7 @@
     "image": "images/tools/workout-tracker.png",
     "description": "Quick, simple and easy workout tracker for the Gym or home.",
     "type": "Tool",
-    "version": "1.1",
+    "version": "1.2",
     "year": 2026
   },
   {
@@ -52,5 +52,15 @@
     "type": "Tool",
     "version": "1.1",
     "year": 2026
+  },
+  {
+    "name": "Color Palette",
+    "url": "https://robertreynik.com/color-palette/",
+    "image": "images/tools/color-palette.webp",
+    "description": "Simple tool that creates a color palette from an image.",
+    "type": "Tool",
+    "version": "1.0",
+    "year": 2026
   }
 ]
+

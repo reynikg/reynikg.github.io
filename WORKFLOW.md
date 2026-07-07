@@ -109,7 +109,7 @@ section for why re-running is always safe.
 Build a single project or article without touching the rest:
 
 ```bash
-node build/generate.js silent-suites            # one project
+node build/generate.js silent-suites            # one project (slug)
 node build/generate.js a b c                     # a few projects
 node build/generate.js --force                   # rewrite all (after editing the template)
 node build/generate-articles.js <slug>           # one article

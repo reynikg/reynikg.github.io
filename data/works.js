@@ -362,13 +362,61 @@ const WORKS = [
     descriptor: "Embroidery patch design of Mytikas Summit",
     type: "Professional Work",
     image: "Selected-Works/55Peaks-Mytikas-Design-thumbnail.jpg",
-    oneLiner: "A neckgaiter design focused on Mt. Olympus - Greece",
+    oneLiner: "An embroidered summit patch for Mytikas - the highest peak of Mt. Olympus, Greece",
     role: "Lead Design Engineer",
     client: "55Peaks",
-    year: "2025",
-    brief: "",
-    decisions: { text: "" },
-    outcome: { text: "", metrics: [] }
+    year: "2026",
+    brief: "Mytikas is the highest peak of Mt. Olympus and the crown of the" +
+           " 55Peaks embroidery patch collection - a series celebrating the" +
+           " fifty-five named summits of Greece's most storied mountain. Standing" +
+           " at 2,918 meters, Mytikas marks the true summit of Olympus, the" +
+           " mythological home of the ancient Greek gods. Each patch turns a" +
+           " hard-earned ascent into a wearable emblem: a keepsake for the climber" +
+           " who reached the top, and a considered souvenir for visitors passing" +
+           " through Litochoro, the gateway village to Olympus National Park. The" +
+           " Mytikas design distills the peak's jagged limestone ridgeline into a" +
+           " clean, flat-color illustration made for embroidery.",
+    decisions: { 
+      text: "Every patch in the collection begins with a photograph. For Mytikas," +
+            " a reference image of the summit was cropped and cleaned to fit the" +
+            " vertical patch format - removing distracting elements, correcting the" +
+            " framing, and isolating the ridgeline so the peak reads instantly. A" +
+            " digital filter was then applied to push the photo toward a midpoint" +
+            " between photograph and vector graphic, and the staging was analyzed to" +
+            " decide which rock faces and shadows deserved detail and which could be" +
+            " flattened. From there, the peak was rebuilt as an SVG. This is where the" +
+            " bulk of the design work happens: the summit is redrawn, refined, and" +
+            " pushed through multiple iterations until its color and character align" +
+            " with the story the patch is meant to tell. Three to four variations were" +
+            " presented to the client, one was selected, and that direction was refined" +
+            " into the final look. At this stage the illustration can carry up to forty" +
+            " distinct colors. Embroidery imposes a hard limit. Manufacturing demands" +
+            " fewer than ten thread colors, and the fixed patch elements - outline," +
+            " brand mark, peak name, and elevation - already claim four of them. Two" +
+            " more are reserved for the sky, leaving roughly four colors to describe the" +
+            " entire summit. Black (#000000) is one of them, so the deepest shadows of" +
+            " Mytikas collapse into pure black, and the same logic is applied across the" +
+            " rest of the illustration to keep the palette tight. Thread also has a" +
+            " minimum stitch width. Details below that threshold were enlarged," +
+            " neighboring shapes in the same color family were merged, and the design" +
+            " was simplified again - a process that can run anywhere from four to ten" +
+            " passes depending on how much color and complexity the original held." +
+            " Because a single illustration can contain hundreds of shapes, color" +
+            " counting is not done by hand. A custom Python script paired with an Excel" +
+            " macro generates the color list at each stage, keeping the reduction" +
+            " measurable and repeatable. Once the client signs off, the SVG is cleaned" +
+            " of overlapping shapes and handed to the manufacturer production-ready."
+           },
+    outcome: { 
+      text: "The Mytikas patch is one of the first three designs from the" +
+            " 55Peaks collection to reach production. It is available now on" +
+            " the shelves of the 55Peaks store in Litochoro, at the foot of" +
+            " Mt. Olympus in Greece.", 
+      metrics: [
+        { label: "Dimesions", value: "70mm x 100mm" },
+        { label: "Thread colors",   value: "6" },
+        { label: "Format",    value: "Embroidery patch" }
+    ] }
   },
 
   {
@@ -381,9 +429,132 @@ const WORKS = [
     role: "Lead Design Engineer",
     client: "55Peaks",
     year: "2026",
-    brief: "",
-    decisions: { text: "" },
-    outcome: { text: "", metrics: [] }
+    brief: "Skala is a beautiful peak of Mt. Olympus, rising to 2,882" +
+           " meters along the mountain's summit ridge - the classic gateway to" +
+           " Mytikas and one of the fifty-five named summits celebrated in the" +
+           " 55Peaks embroidery patch collection. This design turns the ascent of" +
+           " Skala into a wearable emblem: a keepsake for the climber who stood on" +
+           " the ridge, and a considered souvenir for visitors passing through" +
+           " Litochoro, the gateway village to Olympus National Park. The Skala" +
+           " patch distills the peak's broad, tilted crest and shattered rock into" +
+           " a clean, flat-color illustration built for embroidery.",
+    decisions: { 
+      text: "Every patch in the collection begins with a photograph. For Skala," +
+            " a reference image of the summit ridge was cropped and cleaned to fit" +
+            " the vertical patch format - removing distracting elements, correcting" +
+            " the framing, and centering the peak so it reads instantly. A digital" +
+            " filter was then applied to push the photo toward a midpoint between" +
+            " photograph and vector graphic, and the staging was analyzed to decide" +
+            " which rock faces and shadows deserved detail and which could be" +
+            " flattened. From there, the peak was rebuilt as an SVG. This is where" +
+            " the bulk of the design work happens: the summit is redrawn, refined," +
+            " and pushed through multiple iterations until its color and character" +
+            " align with the story the patch is meant to tell. Early rounds tested" +
+            " different treatments of the ridge and sky, and client feedback steered" +
+            " the direction - a stronger contrast between mountain and sky, warmer" +
+            " earthy tones reminiscent of weathered bronze, and a tighter focus on" +
+            " the peak itself rather than the surrounding scene. Three to four" +
+            " variations were presented, one was selected, and that direction was" +
+            " refined into the final look. At this stage the illustration can carry" +
+            " up to forty distinct colors. Embroidery imposes a hard limit." +
+            " Manufacturing demands fewer than ten thread colors, and the fixed" +
+            " patch elements - outline, brand mark, peak name, and elevation -" +
+            " already claim four of them. Two more are reserved for the sky, leaving" +
+            " roughly four colors to describe the entire summit. Black (#000000) is" +
+            " one of them, so the deepest shadows of Skala collapse into pure black," +
+            " and the same logic is applied across the rest of the illustration to" +
+            " keep the palette tight. Thread also has a minimum stitch width." +
+            " Details below that threshold were enlarged, neighboring shapes in the" +
+            " same color family were merged, and the design was simplified again - a" +
+            " process that can run anywhere from four to ten passes depending on how" +
+            " much color and complexity the original held. Because a single" +
+            " illustration can contain hundreds of shapes, color counting is not" +
+            " done by hand. A custom Python script paired with an Excel macro" +
+            " generates the color list at each stage, keeping the reduction" +
+            " measurable and repeatable. Once the client signs off, the SVG is" +
+            " cleaned of overlapping shapes and handed to the manufacturer" +
+            " production-ready." 
+    },
+    outcome: { 
+      text: "The Skala patch is one of the first three designs from the" +
+            " 55Peaks collection to reach production. It is available now" +
+            " on the shelves of the 55Peaks store in Litochoro, at the foot" +
+            " of Mt. Olympus in Greece.", 
+      metrics: [
+        { label: "Dimesions", value: "70mm x 100mm" },
+        { label: "Thread colors",   value: "10" },
+        { label: "Format",    value: "Embroidery patch" }
+    ]  }
+  },
+
+  {
+    slug: "skolio-peak-patch-design",
+    title: "Skolio Peak Patch Design",
+    descriptor: "Embroidery patch design of Skolio Summit",
+    type: "Professional Work",
+    image: "Selected-Works/55peaks-skolio-patch-design-thumbnail.jpg",
+    oneLiner: "An embroidered summit patch for Skala - a peak on the summit ridge of Mt. Olympus, Greece",
+    role: "Lead Design Engineer",
+    client: "55Peaks",
+    year: "2026",
+    brief: "Skolio is the third-highest peak of Mt. Olympus, rising to 2,905" +
+           " meters on the mountain's summit plateau - one of the fifty-five named" +
+           " summits celebrated in the 55Peaks embroidery patch collection. Broad" +
+           " and sweeping where Mytikas is jagged, Skolio offers one of the finest" +
+           " vantage points over the Olympus range. This design turns the ascent" +
+           " into a wearable emblem: a keepsake for the climber who reached the top," +
+           " and a considered souvenir for visitors passing through Litochoro, the" +
+           " gateway village to Olympus National Park. The Skolio patch distills the" +
+           " peak's long, tilted crest and layered rock into a clean, flat-color" +
+           " illustration built for embroidery.",
+    decisions: { 
+      text: "Every patch in the collection begins with a photograph. For Skolio," +
+            " a reference image of the summit was cropped and cleaned to fit the" +
+            " vertical patch format - removing distracting elements, correcting the" +
+            " framing, and centering the peak so it reads instantly. A digital" +
+            " filter was then applied to push the photo toward a midpoint between" +
+            " photograph and vector graphic, and the staging was analyzed to decide" +
+            " which rock faces and shadows deserved detail and which could be" +
+            " flattened. From there, the peak was rebuilt as an SVG. This is where" +
+            " the bulk of the design work happens: the summit is redrawn, refined," +
+            " and pushed through multiple iterations until its color and character" +
+            " align with the story the patch is meant to tell. For Skolio, a full" +
+            " set of color directions was explored side by side - a cool grey stone" +
+            " treatment, a warm earthy bronze, and a cooler blue-tinted variant -" +
+            " each also tested with and without a defining outline on the ridgeline." +
+            " Client feedback guided the choice toward the warmer, bronze-leaning" +
+            " palette and a cleaner read, with redundant tones removed to match the" +
+            " restraint of the other patches in the set. Three to four variations" +
+            " were presented, one was selected, and that direction was refined into" +
+            " the final look. At this stage the illustration can carry up to forty" +
+            " distinct colors. Embroidery imposes a hard limit. Manufacturing" +
+            " demands fewer than ten thread colors, and the fixed patch elements -" +
+            " outline, brand mark, peak name, and elevation - already claim four of" +
+            " them. Two more are reserved for the sky, leaving roughly four colors" +
+            " to describe the entire summit. Black (#000000) is one of them, so the" +
+            " deepest shadows of Skolio collapse into pure black, and the same logic" +
+            " is applied across the rest of the illustration to keep the palette" +
+            " tight. Thread also has a minimum stitch width. Details below that" +
+            " threshold were enlarged, neighboring shapes in the same color family" +
+            " were merged, and the design was simplified again - a process that can" +
+            " run anywhere from four to ten passes depending on how much color and" +
+            " complexity the original held. Because a single illustration can" +
+            " contain hundreds of shapes, color counting is not done by hand. A" +
+            " custom Python script paired with an Excel macro generates the color" +
+            " list at each stage, keeping the reduction measurable and repeatable." +
+            " Once the client signs off, the SVG is cleaned of overlapping shapes" +
+            " and handed to the manufacturer production-ready." 
+          },
+    outcome: { 
+      text: "The Skolio patch is one of the first three designs from the" +
+            " 55Peaks collection to reach production. It is available now" +
+            " on the shelves of the 55Peaks store in Litochoro, at the foot" +
+            " of Mt. Olympus in Greece.", 
+      metrics: [
+        { label: "Dimesions", value: "70mm x 100mm" },
+        { label: "Thread colors",   value: "10" },
+        { label: "Format",    value: "Embroidery patch" }
+    ]  }
   }
 ];
 
