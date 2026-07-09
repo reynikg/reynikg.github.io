@@ -146,10 +146,16 @@ const ABOUT = {
           ]
         },
         {
+          title: "COMAU Training Certification",
+          subtitle: "COMAU Industrial Robotic Arm Operation Training — NIMAC Group",
+          meta: "2026"
+        },
+        {
           title: "Grade 4 Certificate in Modern Dancing",
           subtitle: "ISTD — Imperial Society of Teachers of Dancing",
           meta: "2013"
         }
+        
       ]
     },
 
